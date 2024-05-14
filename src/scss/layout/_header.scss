@@ -1,0 +1,29 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+// Header
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: v.$blanco;
+    padding: 2rem 9%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
+
+    .logo {
+        font-size: 3rem;
+        color: v.$negro;
+        font-weight: v.$bold;
+    }
+
+    span {
+        font-size: 1.6rem;
+        color: v.$gris;
+        cursor: pointer;
+    }
+}
