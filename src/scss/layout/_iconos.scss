@@ -1,0 +1,44 @@
+@use "base/variables" as v;
+@use "base/mixins" as m;
+
+.icons-container {
+    background: v.$grisClaro;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+
+    .icons {
+        background: .1rem solid v.$grisOscuro;
+        padding: 2rem;
+        display: flex;
+        align-items: center;
+        flex: 1 1 25rem;
+
+        img {
+            width: 5rem;
+            height: 5rem;
+            margin-right: 1rem;
+        }
+
+        h3 {
+            color: v.$negro;
+            padding-bottom: .5rem;
+            font-size: 1.5rem;
+
+            @include m.tablet {
+                font-size: 2rem;
+            }
+        }
+
+        span {
+            color: v.$grisOscuro;
+            font-size: 1.2rem;
+
+            @include m.tablet {
+                font-size: 1.5rem;
+            }
+        }
+    }
+}

@@ -1,0 +1,56 @@
+@use "base/variables" as v;
+@use "base/mixins" as m;
+
+footer {
+    
+    .footer-section {
+
+        .box-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+
+            .box {
+                flex: 1 1 30rem;
+                text-align: center;
+
+                h3 {
+                    color: v.$negro;
+                    font-size: 2.5rem;
+                    padding: 1rem 0;
+                }
+
+                a {
+                    color: v.$grisOscuro;
+                    font-size: 1.5rem;
+                    padding: .5rem 0;
+                    display: block;
+
+                    &:hover {
+                        color: v.$rosa;
+                        text-decoration: underline;
+                    }
+                }
+
+                img {
+                    width: 15rem;
+                    margin-top: 2rem;
+                }
+            }
+        }
+
+        .credit {
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            padding-top: 2.5rem;
+            font-size: 2rem;
+            color: v.$grisOscuro;
+            border-top: .1rem solid rgba(0, 0, 0, .1);
+            
+            span {
+                color: v.$rosa;
+            }
+        }
+    }
+}

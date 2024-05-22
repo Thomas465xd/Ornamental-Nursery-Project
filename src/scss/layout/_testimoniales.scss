@@ -1,0 +1,80 @@
+@use "base/variables" as v;
+@use "base/mixins" as m;
+
+.review {
+
+    .box-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+
+        .box {
+            margin: 1rem;
+            flex: 1 1 30rem;
+            box-shadow: 0 .5rem 1.5rem rgba(0, 0, 0, .1);
+            border-radius: .5rem;
+            padding: 3rem 2rem;
+            position: relative;
+            border: .1rem solid rgba(0, 0, 0, .1);
+
+            .stars  {
+                
+                i {
+                    color: v.$rosa;
+                    font-size: 2rem;
+
+                    svg {
+                        width: 2rem;
+                        height: 2rem;
+                    
+                    }
+                }
+            }
+
+            .user {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                margin-top: 2rem;
+
+                img {
+                    width: 5rem;
+                    height: 5rem;
+                    border-radius: 50%;
+                    object-fit: cover;
+                    margin-right: 1rem;
+                }
+
+                h3 {
+                    color: v.$negro;
+                    font-size: 1.5rem;
+                }
+
+                span {
+                    font-size: 1.5rem;
+                    color: v.$grisOscuro;
+                }
+            }
+
+            p {
+                color: v.$grisOscuro;
+                font-size: 1.5rem;
+                line-height: 1.5;
+                padding-top: 2rem;
+            }
+
+            .quote {
+                position: absolute;
+                bottom: 3rem;
+                right: 3rem;
+                font-size: 6rem;
+                color: v.$gris;
+
+                svg {
+                    width: 3rem;
+                    height: 3rem;
+                }
+            }
+        }
+    }
+}
