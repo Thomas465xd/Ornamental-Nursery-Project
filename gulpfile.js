@@ -74,3 +74,4 @@ export function dev() {
 }
 
 export default series( js, css, imagenes, dev )
+//export const build = parallel( js, css, imagenes );

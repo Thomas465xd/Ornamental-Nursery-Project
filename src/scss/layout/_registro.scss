@@ -1,0 +1,31 @@
+@use "base/variables" as v;
+@use "base/mixins" as m;
+
+.registrar {
+
+    h1 {
+        margin-top: 5rem;
+        background-color: rgba(255, 51, 153, .05);
+
+        @include m.tabletV2 {
+            margin-top: 7rem;
+        }
+    }
+
+    p {
+        text-align: center;
+    }
+}
+
+h1 {
+    margin-top: 5rem;
+    background-color: rgba(255, 51, 153, .05);
+
+    @include m.tabletV2 {
+        margin-top: 7rem;
+    }
+}
+
+p {
+    text-align: center;
+}

@@ -13,9 +13,9 @@
     -webkit-backdrop-filter: blur(2rem);
     padding: 8rem 1.5rem 0;
     
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity .4s;
+    //opacity: 0;
+    //pointer-events: none;
+    //transition: opacity .4s;
 
     @include m.tabletV2 {
         padding-top: 10rem;

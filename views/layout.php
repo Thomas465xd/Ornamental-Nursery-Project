@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="../build/css/app.css">
 </head>
 <body>
+    <div id="preloader">
+        <div class="spinner"></div>
+    </div>
     <header class="header">
 
         <a href="/" class="logo">Las Tres Marías<span>.</span></a>
@@ -25,7 +28,7 @@
 
                     <div>
                         <a href="#" class="nav-name">Perfil</a>
-                        <span class="nav-rango">Cliente</span>
+                        <span class="nav-rango"></span>
                     </div>
                 </div>
 
@@ -35,7 +38,21 @@
                         <li class="nav-item" id="nosotros"><a href="/nosotros" class="nav-link">Nosotros</a></li>
                         <li class="nav-item" id="productos"><a href="/productos" class="nav-link">Productos</a></li>
                         <li class="nav-item" id="contacto"><a href="/contacto" class="nav-link">Contacto</a></li>
-                        <li class="nav-item"><ion-icon name="log-in-outline" id="login-toggle" class="nav-login"></ion-icon></li>
+                        <li class="nav-item">
+                            <?php if ($_SESSION) { ?>
+                                <a href="/informacion">Tu Cuenta</a>
+                            <?php } else { ?>
+                                <a href="/login">
+                                    <ion-icon name="log-in-outline" id="login-toggle" class="nav-login"></ion-icon>
+                                </a>
+                            <?php } ?>
+                        </li>
+                        <li>
+                            <?php if ($_SESSION) { ?>
+                                <a href="/logout">Cerrar Sesión</a>
+                            <?php } ?>
+                        </li>
+
                     </ul>
                 </div>
 
@@ -48,36 +65,7 @@
 
         </nav>
 
-        <!-- Login Popup -->
-        <div class="login" id="login">
-            <form action="" class="login-form">
-                <h2 class="login-title">Ingresar a tu Cuenta</h2>
-
-                <div class="login-group">
-                    <div>
-                        <label for="email" class="login-label">Email</label>
-                        <input type="email" placeholder="Escribe tu E-mail" id="email" class="login-input">
-                    </div>
-
-                    <div>
-                        <label for="password" class="login-label">Contraseña</label>
-                        <input type="password" placeholder="Escribe tu Contraseña" id="password" class="login-input">
-                    </div>
-                </div>
-
-                <div>
-                    <p class="login-signup">
-                        ¿No tienes una cuenta? <a href="/registro">Registrate</a>
-                    </p>
-
-                    <a href="/" class="login-forgot">¿Olvidaste tu Contraseña?</a>
-
-                    <button type="submit" class="login-button">Log In</button>
-                </div>
-            </form>
-
-            <ion-icon name="close-outline" class="login-close" id="login-close"></ion-icon>
-        </div>
+        
     </header>
 
     <!-- This is where the content from index.php or other pages will be inserted -->
@@ -99,9 +87,10 @@
 
                 <div class="box">
                     <h3>Links extra</h3>
-                    <a href="#">Mi Cuenta</a>
-                    <a href="#">Mi Orden</a>
-                    <a href="#">Mis Favoritos</a>
+                    <a href="/informacion">Mi Cuenta</a>
+                    <a href="/orden">Mis Ordenes</a>
+                    <a href="/favoritos">Mis Favoritos</a>
+                    <a href="/carrito">Carrito</a>
                 </div>
 
                 <div class="box">

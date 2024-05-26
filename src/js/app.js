@@ -3,22 +3,27 @@ const navMenu = document.getElementById('nav-menu'),
     navToggle = document.getElementById('nav-toggle'),
     navClose = document.getElementById('nav-close');
 
+// Preloader
+window.addEventListener('load', function() {
+    document.getElementById('preloader').style.display = 'none';
+});
+
 // Login
-const login = document.getElementById('login'),
-    loginToggle = document.getElementById('login-toggle'),
-    loginClose = document.getElementById('login-close');
+//const login = document.getElementById('login'),
+//    loginToggle = document.getElementById('login-toggle'),
+//    loginClose = document.getElementById('login-close');
 
 // Login Show
-loginToggle.addEventListener('click', ()=>{
+//loginToggle.addEventListener('click', ()=>{
     //console.log('click');
-    login.classList.add('show-login');
-});
+//    login.classList.add('show-login');
+//});
 
 // Login Hidden
-loginClose.addEventListener('click', ()=>{
-    //console.log('click');
-    login.classList.remove('show-login');
-});
+//loginClose.addEventListener('click', ()=>{
+//    //console.log('click');
+//    login.classList.remove('show-login');
+//});
 
 // Show
 navToggle.addEventListener('click', ()=>{
@@ -42,25 +47,35 @@ function setActiveLink(link) {
     localStorage.setItem('activeLink', link.getAttribute('href'));
 }
 
-// Function to restore active link on page load
-function restoreActiveLink() {
-    const activeLink = localStorage.getItem('activeLink');
-    if (activeLink) {
-        const link = document.querySelector(`.nav-link[href="${activeLink}"]`);
-        if (link) {
-            link.classList.add('active');
-        }
+
+
+// Alerta en pantalla
+function mostrarAlerta(mensaje, tipo, elemento, desaparece = true) {
+
+    // Si hay una alerta previa, entonces no crear otra
+    const alertaPrevia = document.querySelector(".alerta");
+    if(alertaPrevia) {
+        alertaPrevia.remove();
+    }   
+
+    // Crear la alerta
+    const alerta = document.createElement("DIV");
+    alerta.textContent = mensaje;
+    alerta.classList.add("alerta");
+
+    if(tipo === "error") {
+        alerta.classList.add("error");
     }
+
+    // Insertar en el HTML
+    const referencia = document.querySelector(elemento);
+    referencia.appendChild(alerta);
+
+    if(desaparece) {
+        // Eliminar la alerta después de 3 segundos
+        setTimeout(() => {
+            alerta.remove();
+        }, 3000);
+    }
+
 }
-
-// Link action
-function linkAction() {
-    setActiveLink(this);
-    // Remove menu mobile
-    navMenu.classList.remove('show');
-}
-
-navLink.forEach(n => n.addEventListener('click', linkAction));
-
-// Restore active link on page load
-restoreActiveLink();

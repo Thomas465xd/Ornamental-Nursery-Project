@@ -177,7 +177,7 @@
     </div>
 
     <div class="view-all">
-        <a href="#productos" class="boton">Ver Todos los Productos</a>
+        <a href="/productos" class="boton">Ver Todos los Productos</a>
     </div>
 
 </section>

@@ -1,0 +1,82 @@
+@use "base/variables" as v;
+@use "base/mixins" as m;
+
+.olvide-seccion {
+
+    .nombre-pagina {
+        font-size: 4rem;
+        text-align: center;
+        margin-top: 5rem;
+        background-color: rgba(255, 51, 153, .05);
+
+        @include m.tabletV2 {
+            margin-top: 7rem;
+        }
+    }
+
+    .descripcion-pagina {
+        text-align: center;
+        margin-top: 2rem;
+        font-size: 1.6rem;
+        color: rgba(0, 0, 0, 0.7);
+    }
+}
+
+.formulario {
+    width: 100%;
+    max-width: 500px; // Set a maximum width for the form
+    padding: 2rem;
+    margin-top: 5rem;
+    background-color: rgba(255, 51, 153, .05);
+    border: 1px solid rgba(0, 0, 0, 0.1); // Add a border
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); // Add a subtle shadow
+    border-radius: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    flex: 1; // To allow it to take up remaining space when images are hidden
+
+    .campo {
+        display: flex;
+        margin-bottom: 2rem;
+        align-items: center;
+
+        label {
+            flex: 0 0 10rem;
+        }
+
+        input {
+            flex: 1;
+            border: 1px solid rgba(0, 0, 0, 0.1); // Add a border to the input
+            padding: calc(v.$separacion / 4);
+            border-radius: 1rem;
+            max-width: 100%; // Ensure input doesn't overflow
+
+            &:disabled {
+                background-color: lighten(v.$negro, 30%);
+                color: v.$blanco;
+                cursor: not-allowed;
+            }
+        }
+    }
+}
+
+.acciones {
+    text-align: center;
+    margin-top: 2rem;
+
+    a {
+        color: v.$azul;
+        text-decoration: none;
+        margin-right: 1rem;
+        transition: color 0.3s ease; // Add smooth transition for color change
+
+        span {
+            font-weight: 700;
+        }
+
+        &:hover {
+            text-decoration: underline;
+            color: v.$azulOscuro; // Change to the hover color smoothly
+        }
+    }
+}
