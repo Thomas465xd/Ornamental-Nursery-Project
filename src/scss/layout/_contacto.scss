@@ -1,7 +1,26 @@
 @use "base/variables" as v;
 @use "base/mixins" as m;
 
+.boton-contacto {
+    
+    .container {
+        
+        .boton {
+            @include m.boton(v.$rosa, v.$blanco);
+            border-radius: .5rem;
+            display: block;
+            margin: 0 auto;
+            margin-top: 1rem;
+        }
+    }
+}
+
 .contact {
+
+    .heading {
+        margin-top: 5rem;
+    }
+
     .row {
         display: flex;
         flex-wrap: wrap-reverse;

@@ -1,0 +1,157 @@
+@use "base/variables" as v;
+@use "base/mixins" as m;
+
+.login {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    background: hsla(230, 75%, 32%, .1);
+    backdrop-filter: blur(2rem);
+    -webkit-backdrop-filter: blur(2rem);
+    padding: 8rem 1.5rem 0;
+    
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .4s;
+
+    @include m.tabletV2 {
+        padding-top: 10rem;
+
+        .login-form {
+            max-width: 400px;
+            margin-inline: auto;
+        }
+    }
+
+    @include m.desktop {
+        
+        .login-form {
+            padding: 3rem 2rem 3.5rem;
+        }
+    }
+
+    .login-close {
+        position: absolute;
+        top: 2rem;
+        right: 2rem;
+        font-size: 4rem;
+        color: v.$blanco;
+        cursor: pointer;
+
+        @include m.tabletV2 {
+            position: absolute; // or 'fixed'
+            top: 5rem;
+            left: 0;
+            right: 0;
+            margin-inline: auto;
+            font-size: 4rem;
+        }
+    }
+
+    .login-form {
+        .login-group {
+            display: grid;
+        }
+    }
+
+
+    .login-form {
+        background-color: v.$blanco;
+        padding: 2rem 1.5rem 2.5rem;
+        box-shadow: 0 8px 32px hsla(230, 75%, 15%, .3);
+        border-radius: 1rem;
+        row-gap: 1.5rem;
+        text-align: center;
+        transform: translateY(-1rem);
+        transition: transform .4s;
+        
+        .login-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: v.$rosa;
+        }
+
+        .login-group {
+            display: grid;
+            row-gap: 1.5rem;
+
+            .login-label {
+                display: block;
+                text-align: initial;
+                color: v.$negro;
+                font-weight: v.$regular;
+                margin-bottom: .25rem;
+            }
+
+            .login-input {
+                width: 100%;
+                background-color: v.$blanco;
+                border: .1rem solid v.$grisOscuro;
+                padding: 1rem;
+                border-radius: .5rem;
+                color: v.$grisOscuro;
+
+                &::placeholder {
+                    color: v.$grisOscuro;
+                }
+            }
+        }
+
+        .login-signup {
+            margin-top: 1rem;
+            margin-bottom: .5rem;
+            cursor: pointer;
+
+            a {
+                color: v.$azul;
+                font-weight: 700;
+                text-decoration: none;
+
+                &:hover {
+                    color: v.$azulOscuro;
+                    text-decoration: underline;
+                }
+            }
+        }
+
+        .login-forgot {
+            
+            display: inline-block;
+            color: v.$azul;
+            margin-bottom: 1.5rem;
+
+            &:hover {
+                color: v.$azulOscuro;
+                text-decoration: underline;
+            }
+        }
+
+        .login-button {
+            @include m.boton(v.$rosa, v.$blanco);
+            border-radius: .5rem;
+            display: block;
+            margin: 0 auto;
+            margin-top: 1rem;
+
+            &:hover {
+                box-shadow: 0 4px 24px hsla(230, 75%, 40%, .4);
+            }
+        }
+
+    }
+
+
+
+}
+
+.show-login {
+    opacity: 1;
+    pointer-events: initial;
+
+    .login-form {
+        transform: translateY(0);
+    }
+}

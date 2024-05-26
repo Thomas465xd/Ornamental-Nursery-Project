@@ -4,6 +4,12 @@
 footer {
     
     .footer-section {
+    
+        margin-top: 2rem;
+        padding-top: 2.5rem;
+        font-size: 2rem;
+        color: v.$grisOscuro;
+        border-top: .1rem solid rgba(0, 0, 0, .1);
 
         .box-container {
             display: flex;

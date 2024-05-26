@@ -13,6 +13,9 @@ body {
     min-height: 100%;
     display: flex;
     flex-direction: column;
+    
+    font-family: v.$fuente_principal;
+    font-size: 1.6rem;
     //background-color: v.$negro;
     //color: v.$blanco;
 }

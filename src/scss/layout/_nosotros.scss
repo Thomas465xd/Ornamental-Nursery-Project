@@ -1,0 +1,157 @@
+@use "base/variables" as v;
+@use "base/mixins" as m;
+
+.contenedor-nosotros {
+
+    h1 {
+        margin-top: 5rem;
+        background: rgba(255, 51, 153, .05);
+
+        span {
+            color: v.$rosa;
+        }
+    
+        @include m.tabletV2 {
+            margin-top: 10rem;
+        }
+    }
+
+    .nosotros-informacion {
+
+        margin-right: 1rem;
+        margin-left: 1rem;
+
+        @include m.tabletV2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            //grid-template-rows: ;
+            gap: 2rem;
+        }
+
+        .imagen-nosotros {
+
+            picture {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: rgba(255, 51, 153, .05);
+                //border-radius: 1rem;
+                overflow: hidden;
+
+                @include m.tabletV2 {
+                    &:nth-child(1) {
+                        grid-row: 1 / 2;
+                        grid-column: 1 / 2;
+                    }
+                    &:nth-child(2) {
+                        grid-row: 2 / 3;
+                        grid-column: 1 / 2;
+                    }
+                }
+
+
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+        }
+
+        .texto-nosotros {
+            background: rgba(255, 51, 153, .05);
+            padding: 2rem;
+            border-radius: 1rem;
+            overflow: hidden;
+
+            blockquote {
+                font-style: italic;
+                margin-bottom: 1rem;
+            }
+
+            p {
+                margin-bottom: 1rem;
+            }
+        }
+    }
+}
+
+
+
+.contenedor-seccion {
+    padding: 2rem;;
+    border-radius: 1rem;
+    margin-top: 2rem;
+
+    h1 {
+        margin-top: 2rem;
+        color: v.$negro;
+        background-color: rgba(255, 51, 153, .05);
+        padding: 3rem;
+        margin-bottom: 1rem;
+
+        span {
+            color: v.$rosa;
+        }
+    }
+
+    iframe {
+        width: 100%;
+        //height: 100%;
+        border: none;
+        border-radius: 1rem;
+    }
+
+    .contenedor-fundadoras {
+
+        @include m.tabletV2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            //grid-template-rows: ;
+            gap: 2rem;
+        }
+
+        .imagen-fundadoras {
+
+            picture {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: rgba(255, 51, 153, .05);
+                //border-radius: 1rem;
+                overflow: hidden;
+            }
+
+                @include m.tabletV2 {
+                    &:nth-child(1) {
+                        grid-row: 1 / 2;
+                        grid-column: 1 / 2;
+                    }
+                    &:nth-child(2) {
+                        grid-row: 2 / 3;
+                        grid-column: 1 / 2;
+                    }
+                }
+
+
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+
+        margin-top: 5rem;
+    
+        p {
+            margin-bottom: 1rem;
+        }
+    }
+
+}

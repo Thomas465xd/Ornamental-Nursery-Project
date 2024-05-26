@@ -19,4 +19,16 @@ class PaginasController
 
         ]);
     }
+
+    public static function productos( Router $router ) {
+        $router->render('paginas/productos', [
+
+        ]);
+    }
+
+    public static function contacto( Router $router ) {
+        $router->render('paginas/contacto', [
+
+        ]);
+    }
 }

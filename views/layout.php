@@ -10,41 +10,74 @@
 <body>
     <header class="header">
 
-        <input type="checkbox" name="" id="toggler" checked>
-        <label for="toggler" class="bars"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" /></svg></label>
+        <a href="/" class="logo">Las Tres Marías<span>.</span></a>
 
-        <a href="#" class="logo">Las Tres Marías<span>.</span></a>
+        <ion-icon name="menu-outline" class="toggle" id="nav-toggle"></ion-icon>
+        
+        <nav class="nav" id="nav-menu">
+            <div class="nav-content bd-grid">
+                <ion-icon name="close-outline" class="nav-close" id="nav-close"></ion-icon>
 
-        <nav class="navbar">
-            <a href="/inicio">inicio</a>
-            <a href="/nosotros">nosotros</a>
-            <a href="/productos">productos</a>
-            <a href="/contacto">contacto</a>
+                <div class="nav-perfil">
+                    <div class="nav-img">
+                        <img src="../build/img/perfil.jpg" alt="usuario">
+                    </div>
+
+                    <div>
+                        <a href="#" class="nav-name">Perfil</a>
+                        <span class="nav-rango">Cliente</span>
+                    </div>
+                </div>
+
+                <div class="nav-menu">
+                    <ul class="nav-list">
+                        <li class="nav-item" id="home"><a href="/" class="nav-link">Home</a></li>
+                        <li class="nav-item" id="nosotros"><a href="/nosotros" class="nav-link">Nosotros</a></li>
+                        <li class="nav-item" id="productos"><a href="/productos" class="nav-link">Productos</a></li>
+                        <li class="nav-item" id="contacto"><a href="/contacto" class="nav-link">Contacto</a></li>
+                        <li class="nav-item"><ion-icon name="log-in-outline" id="login-toggle" class="nav-login"></ion-icon></li>
+                    </ul>
+                </div>
+
+                <div class="nav-social">
+                    <a href="#" class="social-icon"><ion-icon name="logo-linkedin"></ion-icon></a>
+                    <a href="https://www.instagram.com/lastresmariasvivero/?hl=es-la" class="social-icon"><ion-icon name="logo-instagram"></ion-icon></a>
+                    <a href="#" class="social-icon"><ion-icon name="logo-whatsapp"></ion-icon></a>
+                </div>
+            </div>
+
         </nav>
-        
-        <div class="icons">
-            <a href="#">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
-                </svg>
-            </a>
 
-            
-            <a href="#">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
-                </svg>
-            </a>
-            
-            <a href="#">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15" />
-                </svg>
-            </a>
+        <!-- Login Popup -->
+        <div class="login" id="login">
+            <form action="" class="login-form">
+                <h2 class="login-title">Ingresar a tu Cuenta</h2>
 
-    <!-- Add more icons here -->
+                <div class="login-group">
+                    <div>
+                        <label for="email" class="login-label">Email</label>
+                        <input type="email" placeholder="Escribe tu E-mail" id="email" class="login-input">
+                    </div>
+
+                    <div>
+                        <label for="password" class="login-label">Contraseña</label>
+                        <input type="password" placeholder="Escribe tu Contraseña" id="password" class="login-input">
+                    </div>
+                </div>
+
+                <div>
+                    <p class="login-signup">
+                        ¿No tienes una cuenta? <a href="/registro">Registrate</a>
+                    </p>
+
+                    <a href="/" class="login-forgot">¿Olvidaste tu Contraseña?</a>
+
+                    <button type="submit" class="login-button">Log In</button>
+                </div>
+            </form>
+
+            <ion-icon name="close-outline" class="login-close" id="login-close"></ion-icon>
         </div>
-        
     </header>
 
     <!-- This is where the content from index.php or other pages will be inserted -->
@@ -58,10 +91,10 @@
                 
                 <div class="box">
                     <h3>Links Rapidos</h3>
-                    <a href="#">inicio</a>
-                    <a href="#">nosotros</a>
-                    <a href="#">productos</a>
-                    <a href="#">contacto</a>
+                    <a href="/">inicio</a>
+                    <a href="/nosotros">nosotros</a>
+                    <a href="/productos">productos</a>
+                    <a href="/contacto">contacto</a>
                 </div>
 
                 <div class="box">
@@ -76,12 +109,16 @@
                     <a href="#">+56 9 1234 5678</a>
                     <a href="#">ejemplo@gmail.com</a>
                     <a href="#">Santiago de Chile</a>
-                    <img src="../../build/img/pago.jpg" alt="pago">
+                    <picture class="item-1">
+                        <source srcset="build/img/pago.webp" type="image/webp">
+                        <source srcset="build/img/pago.jpg" type="image/jpeg">
+                        <img loading="lazy" src="build/img/pago.jpg" alt="Anuncio">
+                    </picture>
                 </div>
 
                 <div class="box">
                     <h3>Redes Sociales</h3>
-                    <a href="#">Instagram</a>
+                    <a href="https://www.instagram.com/lastresmariasvivero/?hl=es-la">Instagram</a>
                     <a href="#">WhatsApp</a>
                     <a href="#">Mis Favoritos</a>
                 </div>
@@ -96,5 +133,12 @@
         </section>
 
     </footer>
+
+    <!-- Ionicons -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+    <!-- Scripts -->
+    <script src="../build/js/app.js"></script>
 </body>
 </html>

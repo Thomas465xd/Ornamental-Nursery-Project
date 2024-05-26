@@ -1,11 +1,11 @@
 <section class="home" id="home">
 
     <div class="content">
-        <h3 class="title">Las Mejores Plantas</h3>
+        <h3 class="title">¡Bienvenidos a Vivero Las Tres Marías!</h3>
         <span>Hermosas y Naturales</span>
         <span>Plantas Ornamentales</span>
         <p>Hacia la cordillera de la Quinta Región de Chile, se encuentra nuestro pequeño oasis verde: Vivero Las Tres Marías, un lugar lleno de color, vida y energía femenina. Sí, has leído bien, somos un vivero llevado exclusivamente por mujeres apasionadas por las plantas y la naturaleza.</p>
-        <a href="#productos" class="boton">Ver Productos</a>
+        <a href="/productos" class="boton">Ver Productos</a>
     </div>
 
 </section>
@@ -26,7 +26,7 @@
             <h3>Porque elegirnos?</h3>
             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quasi doloribus rerum fuga tempora quo minima nam nostrum enim provident ea. At repellendus fugit quae repudiandae praesentium delectus quia unde commodi.</p>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium ratione modi, nostrum assumenda optio vel quisquam voluptate necessitatibus maxime placeat atque delectus distinctio. Aut eum repellat voluptates vel dignissimos consequatur!</p>
-            <a href="#" class="boton">Leer Más</a>
+            <a href="/nosotros" class="boton">Leer Más</a>
         </div>
 
     </div>
@@ -331,33 +331,9 @@
     </div>
 </section>
 
-<section class="contact" id="contact">
-
-    <h1 class="heading">Contacta <span>Con Nosotros</span></h1>
-
-    <div class="row">
-        <form action="#" method="post">
-            <div class="inputBox">
-                <label for="nombre">Nombre</label>
-                <input type="text" id="nombre" name="nombre" placeholder="Nombre" required>
-                
-                <label for="correo">Correo</label>
-                <input type="email" id="correo" name="correo" placeholder="Correo" required>
-            </div>
-            <div class="inputBox">
-                <label for="telefono">Número de Teléfono</label>
-                <input type="tel" id="telefono" name="telefono" placeholder="Número de Teléfono" required>
-                
-                <label for="asunto">Asunto</label>
-                <input type="text" id="asunto" name="asunto" placeholder="Asunto" required>
-            </div>
-            <textarea id="mensaje" name="mensaje" placeholder="Mensaje" required></textarea>
-            
-            <input type="submit" value="Enviar Mensaje" class="boton">
-        </form>
-        <div class="image">
-            <img src="../../build/img/contact.jpg" alt="contact">
-        </div>
+<section class="boton-contacto">
+    <div class="container">
+        <h1>¿Quieres Contactar con Nosotros?</h1>
+        <a href="/contacto" class="boton">Contactanos</a>  
     </div>
-    
 </section>

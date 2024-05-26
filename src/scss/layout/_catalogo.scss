@@ -1,0 +1,14 @@
+@use "base/variables" as v;
+@use "base/mixins" as m;
+
+.catalogo {
+
+    h1 {
+        margin-top: 5rem;
+
+        @include m.tabletV2 {
+            margin-top: 10rem;
+        }
+    }
+    
+}
