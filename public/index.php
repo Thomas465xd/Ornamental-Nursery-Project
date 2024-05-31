@@ -5,14 +5,15 @@ require_once __DIR__ . '/../includes/app.php';
 use MVC\Router;
 use Controllers\LoginController;
 use Controllers\PaginasController;
+use Controllers\ProductoController;
 
 $router = new Router();
 
 // Paginas
 $router->get("/", [PaginasController::class, "index"]);
 $router->get('/nosotros', [PaginasController::class, 'nosotros']);
-$router->get('/productos', [PaginasController::class, 'productos']);
-$router->get('/propiedad', [PaginasController::class, 'propiedad']);
+$router->get("/productos", [PaginasController::class, "productos"]);
+$router->get('/producto', [PaginasController::class, 'producto']);
 $router->get('/blog', [PaginasController::class, 'blog']);
 $router->get('/entrada', [PaginasController::class, 'entrada']);
 $router->get('/contacto', [PaginasController::class, 'contacto']);
@@ -46,6 +47,9 @@ $router->get("/orden", [PaginasController::class, "orden"]);
 $router->get("/favoritos", [PaginasController::class, "favoritos"]);
 $router->get("/carrito", [PaginasController::class, "carrito"]);
 $router->post("/carrito", [PaginasController::class, "carrito"]);
+
+// Administración
+$router->get("/admin", [PaginasController::class, "admin"]);
 
 
 // Comprueba y valida las rutas, que existan y les asigna las funciones del Controlador
