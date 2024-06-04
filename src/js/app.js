@@ -8,23 +8,6 @@ window.addEventListener('load', function() {
     document.getElementById('preloader').style.display = 'none';
 });
 
-// Login
-//const login = document.getElementById('login'),
-//    loginToggle = document.getElementById('login-toggle'),
-//    loginClose = document.getElementById('login-close');
-
-// Login Show
-//loginToggle.addEventListener('click', ()=>{
-    //console.log('click');
-//    login.classList.add('show-login');
-//});
-
-// Login Hidden
-//loginClose.addEventListener('click', ()=>{
-//    //console.log('click');
-//    login.classList.remove('show-login');
-//});
-
 // Show
 navToggle.addEventListener('click', ()=>{
     navMenu.classList.toggle('show');
@@ -77,5 +60,41 @@ function mostrarAlerta(mensaje, tipo, elemento, desaparece = true) {
             alerta.remove();
         }, 3000);
     }
-
 }
+
+// Carrito 
+
+// Get the modal
+document.addEventListener('DOMContentLoaded', (event) => {
+    // Get the modal
+    const modal = document.getElementById("cartModal");
+    //console.log("Modal:", modal); // Debugging
+
+    // Get the button that opens the modal
+    const btn = document.getElementById("cart-icon");
+    //console.log("Button:", btn); // Debugging
+
+    // Get the <span> element that closes the modal
+    const span = document.getElementsByClassName("close")[0];
+    //console.log("Close Button:", span); // Debugging
+
+    // When the user clicks the button, open the modal 
+    btn.onclick = function() {
+        //console.log("Opening modal..."); // Debugging
+        modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        //console.log("Closing modal..."); // Debugging
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            //console.log("Clicked outside modal..."); // Debugging
+            modal.style.display = "none";
+        }
+    }
+});

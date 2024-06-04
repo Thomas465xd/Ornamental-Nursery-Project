@@ -9,7 +9,7 @@ class Email {
     public $email;
     public $token;
 
-    public function __construct($nombre, $email, $token) {
+    public function __construct($nombre, $email, $token = null) {
         $this->nombre = $nombre;
         $this->email = $email;
         $this->token = $token;
@@ -119,8 +119,8 @@ class Email {
         $mail->Username = $_ENV["EMAIL_USER"];
         $mail->Password = $_ENV["EMAIL_PASS"];
 
-        $mail->setFrom("cuentas@appsalon.com");
-        $mail->addAddress("cuentas@appsalon.com", "AppSalon.com");
+        $mail->setFrom("cuentas@tresmarias.com");
+        $mail->addAddress("cuentas@tresmarias.com", "AppSalon.com");
         $mail->Subject = "Reestablece tu Contraseña";
 
         // Set HTML
@@ -202,5 +202,69 @@ class Email {
 
         // Enviar el mail
         $mail->send();
+    }
+
+    public function enviarContacto($nombre, $email, $telefono, $asunto, $mensajeTexto) {
+
+        // Crear el objeto de email
+        $mail = new PHPMailer();
+        $mail->isSMTP();
+        $mail->Host = $_ENV["EMAIL_HOST"];
+        $mail->SMTPAuth = true;
+        $mail->Port = $_ENV["EMAIL_PORT"];
+        $mail->Username = $_ENV["EMAIL_USER"];
+        $mail->Password = $_ENV["EMAIL_PASS"];
+
+        // Configurar el contenido del Email
+        $mail->setFrom("admin@tresmarias.com");
+        $mail->addAddress("admin@tresmarias.com", "LasTresMarias.com");
+        $mail->Subject = "Tienes un Nuevo Mensaje";
+
+        // Habilitar HTML
+        $mail->isHTML(true);
+        $mail->CharSet = "UTF-8";
+
+        // Definir el contenido HTML del correo electrónico con estilos
+        $contenido = "
+        <html>
+        <head>
+            <style>
+                /* Estilos CSS */
+                body {
+                    font-family: Arial, sans-serif;
+                    background-color: #f4f4f4;
+                }
+                .mensaje {
+                    border: 1px solid #ccc;
+                    padding: 20px;
+                    background-color: #fff;
+                }
+                /* Agrega más estilos según sea necesario */
+            </style>
+        </head>
+        <body>
+            <div class='mensaje'>
+                <p>Tienes un nuevo mensaje:</p>
+                <p><strong>Nombre:</strong> {$nombre}</p>
+                <p><strong>Email:</strong> {$email}</p>
+                <p><strong>Teléfono:</strong> {$telefono}</p>
+                <p><strong>Asunto:</strong> {$asunto}</p>
+                <p><strong>Mensaje:</strong> {$mensajeTexto}</p>
+            </div>
+        </body>
+        </html>
+        ";
+
+        $mail->Body = $contenido;
+        $mail->AltBody = "Esto es texto alternativo sin HTML";
+
+        // Enviar el email
+        if($mail->send()) {
+            $mensaje = "Mensaje Enviado Correctamente";
+        } else {
+            $mensaje = "El mensaje no se pudo enviar... Error: {$mail->ErrorInfo}";
+        }
+
+        return $mensaje;
     }
 } 

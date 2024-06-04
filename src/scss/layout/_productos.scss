@@ -34,6 +34,7 @@
 
                 img {
                     height: 25rem;
+                    transition: transform 0.5s ease; // This is the time it takes to zoom in the image
                 }
 
                 .icons {
@@ -50,15 +51,21 @@
                         width: 60%;
                         background: v.$rosa;
                         color: v.$blanco;
+                        transition: background 0.3s ease; // Add this line
 
                         svg {
                             margin-top: 1rem;
                             width: 3rem; // Reduce this value to make the SVG images smaller
                             height: 3rem; // Reduce this value to make the SVG images smaller
+                            transition: transform 0.3s ease; // Makes the SVG images move up when hovering over them
                         }
 
                         &:hover {
                             background: v.$grisOscuro;
+
+                            svg {
+                                transform: translateY(-.4rem);
+                            }
                         }
                     }
 
@@ -112,6 +119,13 @@
         .boton {
             @include m.boton(v.$rosa, v.$blanco);
             border-radius: 1rem;
-            margin-top: 2rem;}
+            margin-top: 2rem;
+
+            transition: transform 0.3s ease;
+
+            &:hover {
+                transform: translateY(-.4rem);
+            }
+        }
     }
 }

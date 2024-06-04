@@ -2,8 +2,13 @@
 
     <h1 class="heading">Contacta <span>Con Nosotros</span></h1>
 
+    <?php
+        if($mensaje) { ?>
+            <p class='alerta exito' > <?php echo $mensaje; ?> </p>;
+    <?php } ?>
+
     <div class="row">
-        <form action="#" method="post">
+        <form action="/contacto" method="post">
             <div class="inputBox">
                 <label for="nombre">Nombre</label>
                 <input type="text" id="nombre" name="nombre" placeholder="Nombre" required>
@@ -23,7 +28,11 @@
             <input type="submit" value="Enviar Mensaje" class="boton">
         </form>
         <div class="image">
-            <img src="../../build/img/contact.jpg" alt="contact">
+        <picture>
+            <source srcset="build/img/contact.webp" type="image/webp">
+            <source srcset="build/img/contact.jpg" type="image/jpeg">
+            <img src="build/img/contact.jpg" alt="imagen contacto">
+        </picture>
         </div>
     </div>
     

@@ -247,10 +247,12 @@ header {
         .nav-link {
             padding: 0.5rem .8rem;
             border-radius: .25rem;
+            transition: color .3s, background-color .3s; // Add background-color to the transition
     
             &:hover {
                 color: v.$blanco;
                 background-color: v.$azulOscuro;
+                box-shadow: 0 0 10px v.$azulOscuro; // Add glow effect
             }
         }
     

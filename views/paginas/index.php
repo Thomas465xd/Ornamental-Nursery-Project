@@ -176,8 +176,10 @@
         </div>
     </div>
 
-    <div class="view-all">
-        <a href="/productos" class="boton">Ver Todos los Productos</a>
+    <div class="contenedor">
+        <div class="view-all">
+            <a href="/productos" class="boton">Ver Todos los Productos</a>
+        </div>
     </div>
 
 </section>

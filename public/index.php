@@ -45,8 +45,13 @@ $router->get("/informacion", [PaginasController::class, "cuenta"]);
 // Informacion Pedidos y Carrito
 $router->get("/orden", [PaginasController::class, "orden"]);
 $router->get("/favoritos", [PaginasController::class, "favoritos"]);
-$router->get("/carrito", [PaginasController::class, "carrito"]);
+
+// Carrito y Pago
+$router->get("/compra", [PaginasController::class, "compra"]);
 $router->post("/carrito", [PaginasController::class, "carrito"]);
+
+$router->post('/carrito/vaciar', [PaginasController::class, "vaciarCarrito"]);
+
 
 // Administración
 $router->get("/admin", [PaginasController::class, "admin"]);

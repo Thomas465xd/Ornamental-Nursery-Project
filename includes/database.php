@@ -1,7 +1,5 @@
 <?php
 
-//$db = mysqli_connect('localhost', 'root', 'Pyth0n@465', 'tienda_virtual');
-
 $db = mysqli_connect(
     $_ENV["DB_HOST"], 
     $_ENV["DB_USER"], 

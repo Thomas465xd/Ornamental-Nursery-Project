@@ -44,6 +44,12 @@
             @include m.boton(v.$verde, v.$blanco);
             margin-left: 3rem;
             border-radius: 1rem;
+
+            transition: transform 0.3s ease;
+
+            &:hover {
+                transform: translateY(-.2rem);
+            }
         }
     }
 
@@ -84,6 +90,12 @@
             .boton {
                 @include m.boton(v.$verde, v.$blanco);
                 border-radius: 1rem;
+
+                transition: transform 0.3s ease;
+
+                &:hover {
+                    transform: translateY(-.2rem);
+                }
             }
 
             h3 {
@@ -125,6 +137,70 @@
             padding: 1rem 2rem;
             text-align: center;
             mix-blend-mode: screen;
+        }
+    }
+}
+
+.carrito {
+    position: fixed;
+    bottom: 8rem;
+    right: 2rem;
+    width: 5rem;
+    height: 5rem;
+    background-color: v.$rosa;
+    color: v.$blanco;
+    border-radius: 50%;
+    text-align: center;
+    box-shadow: 2px 2px 3px #999;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background-color: v.$rosaClaro;
+    }
+
+    .carrito-icon {
+        font-size: 3rem;
+        transition: transform 0.3s ease;
+
+        &:hover {
+            transform: translateY(-.2rem);
+        }
+    }
+}
+
+.float {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 5rem;
+    height: 5rem;
+    background-color: #25d366;
+    color: #fff;
+    border-radius: 50%;
+    text-align: center;
+    box-shadow: 2px 2px 3px #999;
+    z-index: 1000;
+    display: flex; // Add this line
+    justify-content: center; // Add this line
+    align-items: center; // Add this line
+
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background-color: #2aff78;
+    }
+
+    .whatsapp {
+        font-size: 3rem;
+        transition: transform 0.3s ease;
+
+        &:hover {
+            transform: translateY(-.2rem);
         }
     }
 }
