@@ -29,4 +29,35 @@ class Producto extends ActiveRecord {
     }
 
     // Validar Creacion de Producto
+    public function validar() {
+        if(!$this->nombre) {
+            self::$errores[] ="Debes añadir un Nombre";
+        }
+
+        if(!$this->descripcion) {
+            self::$errores[] ="La Descripcion del producto es obligatoria";
+        }
+
+        if(strlen( $this->descripcion ) < 50 ) {
+            self::$errores[] ="Debes añadir una Descripcion mayor a 50 caracteres";
+        }
+
+        if(!$this->precio) {
+            self::$errores[] ="El precio del producto es obligatorio";
+        }
+
+        if(!$this->stock) {
+            self::$errores[] ="El stock actual del producto es obligatorio";
+        }
+
+        if(!$this->imagen_url) {
+            self::$errores[] ="La imagen es obligatoria";
+        }
+
+        if(!$this->categoria) {
+            self::$errores[] ="Debes seleccionar una categoría para el producto";
+        }
+
+        return self::$errores;
+    }
 }

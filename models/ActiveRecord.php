@@ -19,6 +19,29 @@ class ActiveRecord {
         static::$alertas[$tipo][] = $mensaje;
     }
 
+    // Subida de archivos
+    public function setImagen($imagen) {
+        // Elimina la imagen previa
+
+        if(!is_null($this->id)) {
+            $this->borrarImagen();
+        }
+
+        // Asignar al atributo de imagen el nombre de la imagen
+        if($imagen) {
+            $this->imagen = $imagen;
+        }
+    }
+
+    // Eliminacion de archivos
+    public function borrarImagen() {
+        // Comprobar si existe el archivo
+        $existeArchivo = file_exists(CARPETA_IMAGENES . $this->imagen);
+        if($existeArchivo) {
+            unlink(CARPETA_IMAGENES . $this->imagen);
+        }
+    }
+
     // Validación
     public static function getAlertas() {
         return static::$alertas;

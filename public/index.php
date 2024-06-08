@@ -48,13 +48,26 @@ $router->get("/favoritos", [PaginasController::class, "favoritos"]);
 
 // Carrito y Pago
 $router->get("/compra", [PaginasController::class, "compra"]);
+$router->post("/compra", [PaginasController::class, "compra"]);
+
+$router->post("/compra/quitar", [PaginasController::class, "quitar"]);
+$router->post("/compra/agregar", [PaginasController::class, "agregar"]);
+
 $router->post("/carrito", [PaginasController::class, "carrito"]);
+
+$router->get('/confirmar', [PaginasController::class, "confirmar"]);
+$router->post('/confirmar', [PaginasController::class, "confirmar"]);
 
 $router->post('/carrito/vaciar', [PaginasController::class, "vaciarCarrito"]);
 
 
 // Administración
-$router->get("/admin", [PaginasController::class, "admin"]);
+$router->get("/producto/admin", [ProductoController::class, "index"]);
+$router->get("/producto/crear", [ProductoController::class, "crear"]);
+$router->post("/producto/crear", [ProductoController::class, "crear"]);
+$router->get("/producto/actualizar", [ProductoController::class, "actualizar"]);
+$router->post("/producto/actualizar", [ProductoController::class, "actualizar"]);
+$router->post("/producto/eliminar", [ProductoController::class, "eliminar"]);
 
 
 // Comprueba y valida las rutas, que existan y les asigna las funciones del Controlador

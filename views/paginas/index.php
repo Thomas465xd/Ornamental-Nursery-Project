@@ -16,19 +16,20 @@
 
     <div class="row">
 
-        <div class="video-container">
-            <video src="../../build/img/about-vid.mp4" autoplay loop muted></video>
-            <!--<img src="../../build/img/background.jpg" alt="img">-->
-            <h3>Los Mejores Vendedores de Plantas</h3>
-        </div>
+        <div class="contenedor">
+            <div class="video-container">
+                <video src="../../build/img/about-vid.mp4" autoplay loop muted></video>
+                <!--<img src="../../build/img/background.jpg" alt="img">-->
+                <h3>Los Mejores Vendedores de Plantas</h3>
+            </div>
 
-        <div class="content">
-            <h3>Porque elegirnos?</h3>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quasi doloribus rerum fuga tempora quo minima nam nostrum enim provident ea. At repellendus fugit quae repudiandae praesentium delectus quia unde commodi.</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium ratione modi, nostrum assumenda optio vel quisquam voluptate necessitatibus maxime placeat atque delectus distinctio. Aut eum repellat voluptates vel dignissimos consequatur!</p>
-            <a href="/nosotros" class="boton">Leer Más</a>
+            <div class="content-about">
+                <h3>Porque elegirnos?</h3>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quasi doloribus rerum fuga tempora quo minima nam nostrum enim provident ea. At repellendus fugit quae repudiandae praesentium delectus quia unde commodi.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium ratione modi, nostrum assumenda optio vel quisquam voluptate necessitatibus maxime placeat atque delectus distinctio. Aut eum repellat voluptates vel dignissimos consequatur!</p>
+                <a href="/nosotros" class="boton">Leer Más</a>
+            </div>
         </div>
-
     </div>
 
 </section>
@@ -334,8 +335,8 @@
 </section>
 
 <section class="boton-contacto">
-    <div class="container">
-        <h1>¿Quieres Contactar con Nosotros?</h1>
+    <h1>¿Quieres Contactar con Nosotros?</h1>
+    <div class="contenedor">
         <a href="/contacto" class="boton">Contactanos</a>  
     </div>
 </section>

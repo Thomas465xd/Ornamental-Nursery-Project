@@ -3,7 +3,7 @@
 
 .boton-contacto {
     
-    .container {
+    .contenedor {
         
         .boton {
             @include m.boton(v.$rosa, v.$blanco);

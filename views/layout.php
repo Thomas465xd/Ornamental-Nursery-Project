@@ -107,7 +107,14 @@
                     </div>
 
                     <div>
-                        <a href="/informacion" class="nav-name">Cuenta</a>
+                        <?php if ($_SESSION) { ?>
+                            <a href="/informacion">Tu Cuenta 🧔</a>
+                        <?php } else { ?>
+                            <a href="/login">
+                                Ingresar 📲
+                            </a>
+                        <?php } ?>
+
                         <span class="nav-rango"></span>
                     </div>
                 </div>

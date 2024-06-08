@@ -18,32 +18,59 @@
                 // Incrementar el subtotal total
                 $subtotal += $subtotalProducto;
                 // Incrementar el precio total
-                $precioTotal += $producto['precio'];
+                $precioTotal += $subtotalProducto;
                 ?>
                 <div class="producto">
                     <div class="image">
                         <img loading="lazy" src="/imagenes/<?php echo $producto['imagen_url']; ?>" alt="producto">
                     </div>
                     <div class="detalles">
-                        <h2>Nombre: <?php echo $producto['nombre']; ?></h2>
-                        <p>Precio: $<?php echo $producto['precio']; ?></p>
-                        <p>Cantidad: <?php echo $producto['cantidad']; ?></p>
-                        <p>Subtotal: $<?php echo $subtotalProducto; ?></p>
+                        <h2>Nombre: <span><?php echo $producto['nombre']; ?></span></h2>
+                        <p>Precio: <span>$<?php echo $producto['precio']; ?></span></p>
+                        <p>Cantidad: <span><?php echo $producto['cantidad']; ?></span></p>
+                        <p>Subtotal: <span>$<?php echo $subtotalProducto; ?></span></p>
                     </div>
                     <div class="acciones-orden">
-                        <a href="#" class="boton-eliminar">Eliminar Producto</a>
+                        <div class="opciones-cantidad">
+
+                            <!-- Formulario para disminuir la cantidad -->
+                            <form action="/compra/quitar" method="post">
+                                <input type="hidden" name="ref" value="<?php echo $producto['ref']; ?>">
+                                <button type="submit" class="boton-quitar">-</button>
+                            </form>
+                            
+                            <!-- Formulario para aumentar la cantidad -->
+                            <form action="/compra/agregar" method="post">
+                                <input type="hidden" name="ref" value="<?php echo $producto['ref']; ?>">
+                                <button type="submit" class="boton-agregar">+</button>
+                            </form>
+
+                        </div>
+
+                        <!-- Botón para eliminar el producto -->
+                        <form action="/eliminar-producto" method="post">
+                            <input type="hidden" name="ref" value="<?php echo $producto['ref']; ?>">
+                            <button type="submit" class="boton-eliminar">Eliminar Producto</button>
+                        </form>
+
                     </div>
                 </div>
             <?php endforeach; ?>
         <?php else: ?>
-            <p>Tu carrito está vacío.</p>
+            <p>Tu carrito está vacío 😿</p>
         <?php endif; ?>
         <!-- Mostrar el total de la cantidad -->
-        <h3>Precio Total: $ <?php echo $precioTotal; ?></h3>
+        <h3>Total a Pagar: $ <?php echo $precioTotal; ?></h3>
+        <p class="iva">IVA incluido</p>
 
         <div class="opciones">
-            <a href="#" class="boton-editar">Seguir Comprando</a>
-            <a href="/compra" class="boton-aprobar">Confirmar Compra 💴🏦</a>
+            
+            <?php if($_SESSION["carrito"]) : ?>
+            <a href="/productos" class="boton-editar">Seguir Comprando</a>
+                <a href="/confirmar" class="boton-azul">Confirmar Compra 💴🏦</a>
+            <?php else : ?>
+                <a href="/productos" class="boton-aprobar">Ir a Productos</a>
+            <?php endif; ?>
         </div>
     </div>
 </section>

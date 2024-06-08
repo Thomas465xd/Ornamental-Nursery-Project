@@ -14,4 +14,15 @@
     span {
         color: v.$rosa;
     }
+
+    .box {
+
+        .content {
+
+            .boton,
+            .boton-editar {
+                border-radius: 1rem;
+            }
+        }
+    }
 }

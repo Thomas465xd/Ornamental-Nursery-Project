@@ -6,6 +6,9 @@ use MVC\Router;
 use Classes\Email;
 use Model\Usuario; // Importa la clase Usuario
 use Model\Producto; // Importa la clase Producto
+use Transbank\Webpay\Webpay;
+use Transbank\Webpay\Configuration;
+use Transbank\Webpay\WebpayPlus\Transaction;
 
 class PaginasController
 {
@@ -187,9 +190,165 @@ class PaginasController
 
     public static function compra(Router $router) {
         session_start();
-        
+
+        // Verificar si el carrito existe en la sesión
+        if (!isset($_SESSION['carrito'])) {
+            // Redireccionar al carrito si no hay productos en el carrito
+            header('Location: /carrito');
+            return;
+        }
+
+        // Obtener el carrito de la sesión
+        $carrito = $_SESSION['carrito'];
+
+        // Procesar la solicitud de eliminación de un producto del carrito
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['eliminar']) && isset($_POST['ref'])) {
+            $ref = $_POST['ref'];
+
+            // Encontrar el índice del producto en el carrito
+            foreach ($carrito as $i => $producto) {
+                if ($producto['ref'] === $ref) {
+                    // Disminuir la cantidad del producto en 1
+                    $carrito[$i]['cantidad']--;
+                    // Si la cantidad llega a 0, eliminar el producto del carrito
+                    if ($carrito[$i]['cantidad'] <= 0) {
+                        unset($carrito[$i]);
+                    }
+                    // Actualizar el carrito en la sesión
+                    $_SESSION['carrito'] = array_values($carrito);
+                    // Redireccionar de vuelta a la página de compra
+                    header('Location: /compra');
+                    return;
+                }
+            }
+        }
+
+        // Procesar la solicitud de aumento de la cantidad de un producto en el carrito
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['agregar']) && isset($_POST['ref'])) {
+            $ref = $_POST['ref'];
+
+            // Encontrar el índice del producto en el carrito
+            foreach ($carrito as $i => $producto) {
+                if ($producto['ref'] === $ref) {
+                    // Aumentar la cantidad del producto en 1
+                    $carrito[$i]['cantidad']++;
+                    // Actualizar el carrito en la sesión
+                    $_SESSION['carrito'] = $carrito;
+                    // Redireccionar de vuelta a la página de compra
+                    header('Location: /compra');
+                    return;
+                }
+            }
+        }
+
+        // Renderizar la página de compra
         $router->render('/cuenta/compra', [
             "carrito" => $_SESSION['carrito'],
         ]);
+    }
+
+    public static function quitar(Router $router) {
+        session_start();
+
+        // Verificar si el carrito existe en la sesión
+        if (!isset($_SESSION['carrito'])) {
+            // Redireccionar al carrito si no hay productos en el carrito
+            header('Location: /carrito');
+            return;
+        }
+
+        // Obtener la referencia del producto a quitar
+        $ref = $_POST['ref'];
+
+        // Obtener el carrito de la sesión
+        $carrito = $_SESSION['carrito'];
+
+        // Encontrar el índice del producto en el carrito
+        foreach ($carrito as $i => $producto) {
+            if ($producto['ref'] === $ref) {
+                // Disminuir la cantidad del producto en 1
+                $carrito[$i]['cantidad']--;
+                // Si la cantidad llega a 0, eliminar el producto del carrito
+                if ($carrito[$i]['cantidad'] <= 0) {
+                    unset($carrito[$i]);
+                }
+                // Actualizar el carrito en la sesión
+                $_SESSION['carrito'] = array_values($carrito);
+                // Redireccionar de vuelta a la página de compra
+                header('Location: /compra');
+                return;
+            }
+        }
+    }
+
+    public static function agregar(Router $router) {
+        session_start();
+        // Verificar si el carrito existe en la sesión
+        if (!isset($_SESSION['carrito'])) {
+            // Redireccionar al carrito si no hay productos en el carrito
+            header('Location: /carrito');
+            return;
+        }
+
+        // Obtener la referencia del producto a agregar
+        $ref = $_POST['ref'];
+
+        // Obtener el carrito de la sesión
+        $carrito = $_SESSION['carrito'];
+
+        // Encontrar el índice del producto en el carrito
+        foreach ($carrito as $i => $producto) {
+            if ($producto['ref'] === $ref) {
+                // Aumentar la cantidad del producto en 1
+                $carrito[$i]['cantidad']++;
+                // Actualizar el carrito en la sesión
+                $_SESSION['carrito'] = $carrito;
+                // Redireccionar de vuelta a la página de compra
+                header('Location: /compra');
+                return;
+            }
+        }
+    }
+
+    public static function confirmar(Router $router) {
+        session_start();
+
+        // Obtener el carrito de la sesión
+        $carrito = $_SESSION['carrito'];
+        
+        $router->render('/cuenta/confirmar', [
+            "carrito" => $carrito,
+        ]);
+    }
+
+    public static function procesar(Router $router) {
+        session_start();
+
+        // Obtener el carrito de la sesión
+        $carrito = $_SESSION['carrito'];
+    
+        // Configurar las credenciales
+        $configuration = new Configuration();
+        $configuration->setEnvironment(Configuration::ENVIRONMENT_INTEGRATION); // Modo de integración (pruebas)
+        $configuration->setCommerceCode("tu_commerce_code");
+        $configuration->setPrivateKey("ruta_a_tu_llave_privada.pem");
+        $configuration->setPublicCert("ruta_a_tu_certificado_publico.pem");
+        $configuration->setWebpayCert("ruta_a_tu_certificado_webpay.pem");
+    
+        // Crear una instancia de Webpay
+        $webpay = new Webpay($configuration);
+    
+        // Configurar los parámetros de la transacción
+        $buy_order = "orden_de_compra";
+        $session_id = session_id();
+        $amount = 1000; // Monto en pesos chilenos
+        $return_url = "http://tudominio.com/transbank/retorno";
+    
+        // Iniciar la transacción
+        $response = $webpay->getNormalTransaction()->initTransaction($amount, $buy_order, $session_id, $return_url);
+    
+        // Redireccionar al usuario al formulario de pago de Transbank
+        header("Location: " . $response->getUrl());
+        exit;
     }
 }
