@@ -1,5 +1,13 @@
 <?php
 
+define("TEMPLATES_URL", __DIR__ . "/templates");
+define("FUNCIONES_URL", __DIR__ . "funciones.php");
+define("CARPETA_IMAGENES", $_SERVER["DOCUMENT_ROOT"] . "/imagenes/");
+
+function incluirTemplate(string $nombre, bool $inicio = false) {
+    include TEMPLATES_URL . "/${nombre}.php";
+}
+
 function debug($variable) : string {
     echo "<pre>";
     var_dump($variable);
@@ -15,7 +23,7 @@ function s($html) : string {
 
 // Validar tipo de contenido
 function validarTipoContenido($tipo) {
-    $tipos = ["vendedor", "propiedad"];
+    $tipos = ["producto", "orden"];
 
     return in_array($tipo, $tipos);
 }
@@ -55,4 +63,11 @@ function validarORedireccionar(string $url ) {
     }
 
     return $id;
+}
+
+// Validar Administrador
+function isAdminLoggedIn() {
+    session_start();
+    // Verifica si el usuario está autenticado y es administrador
+    return isset($_SESSION['login']) && $_SESSION['login'] === true && isset($_SESSION['admin']) && $_SESSION['admin'] === "1";
 }

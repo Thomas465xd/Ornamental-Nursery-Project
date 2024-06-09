@@ -47,12 +47,6 @@
 
                         </div>
 
-                        <!-- Botón para eliminar el producto -->
-                        <form action="/eliminar-producto" method="post">
-                            <input type="hidden" name="ref" value="<?php echo $producto['ref']; ?>">
-                            <button type="submit" class="boton-eliminar">Eliminar Producto</button>
-                        </form>
-
                     </div>
                 </div>
             <?php endforeach; ?>

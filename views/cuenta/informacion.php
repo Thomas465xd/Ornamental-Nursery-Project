@@ -6,13 +6,24 @@
 
         <div class="contenedor">
             <div class="contenedor-seccion">
-                <div class="datos-cuenta">
-                    <p><strong>nombre:</strong> <?php echo s($nombre ?? ''); ?></p>
-                    <p><strong>Apellido:</strong> <?php echo s($usuario->apellido); ?></p>
-                    <p><strong>Teléfono:</strong> +56 9 <?php echo s($usuario->telefono); ?></p>
-                    <p><strong>Email:</strong> <?php echo s($usuario->email); ?></p>
-                </div>
-    
+                <form class="formulario" method="POST" action="/actualizar-datos">
+                    <div class="datos-cuenta">
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" id="nombre" name="nombre" value="<?php echo s($nombre ?? ''); ?>" placeholder="Tu Nombre">
+
+                        <label for="apellido">Apellido:</label>
+                        <input type="text" id="apellido" name="apellido" value="<?php echo s($usuario->apellido); ?>" placeholder="Tu Apellido">
+
+                        <label for="telefono">Teléfono:</label>
+                        <input type="text" id="telefono" name="telefono" value="<?php echo s($usuario->telefono); ?>" placeholder="Tu Teléfono">
+
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" value="<?php echo s($usuario->email); ?>" placeholder="Tu Email" readonly>
+                    </div>
+                    
+                    <input type="submit" value="Guardar Cambios" class="boton-aprobar">
+                </form>
+
                 <div class="image">
                     <picture>
                         <source srcset="build/img/registro.webp" type="image/webp">
@@ -50,7 +61,7 @@
 
     <div class="botones">
         <a href="#" class="boton-azul"></a>
-        <a href="#" class="boton-editar"></a>
+        <a href="#" class="boton-editar">Reestablecer Contraseña</a>
         <a href="/logout" class="boton-eliminar">Cerrar Sesión</a>
     </div>
 </section>

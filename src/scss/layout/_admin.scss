@@ -1,0 +1,149 @@
+@use "base/variables" as v;
+@use "base/mixins" as m;
+
+.admin-tab {
+
+    span {
+        color: v.$rosaClaro;
+    }
+
+    .contenedor {
+        @include m.tablet {
+            margin-top: 10rem;
+        }
+
+
+        .alerta {
+            padding: .5rem;
+            text-align: center;
+            color: v.$blanco;
+            font-weight: v.$bold;
+            text-transform: uppercase;
+            margin: 1rem 0;
+
+            &.error {
+                background-color: v.$rojo;
+            }
+
+            &.exito {
+                background-color: v.$verde;
+            }
+        }
+
+        .boton-aprobar {
+            border-radius: 1rem;
+        }
+
+        table.productos {
+            margin-top: 4rem;
+            width: 100%;
+            border-collapse: collapse; /* Changed from border-spacing to border-collapse */
+            border-radius: 1rem; /* Added border-radius */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Added box-shadow */
+            overflow: hidden; /* Ensures rounded corners */
+
+            thead {
+                background-color: v.$verdeAcogedor;
+
+                th {
+                    color: v.$blanco;
+                    padding: 2rem;
+                    border: 1px solid v.$gris; /* Added border */
+                    text-align: center;
+                }
+            }
+
+            tbody {
+                tr {
+                    td {
+                        padding: 1rem;
+                        border: 1px solid v.$gris; /* Added border */
+                        text-align: center; /* Center the text horizontally */
+                        vertical-align: middle; /* Center the text vertically */
+                    }
+
+                    &:nth-child(even) {
+                        background-color: v.$grisClaro;
+                    }
+                }
+            }
+
+            .imagen-tabla {
+                width: 20rem; /* Adjusted width */
+                height: 20rem; /* Adjusted height */
+                display: block; /* Ensure the image is displayed as a block element */
+                margin: 0 auto; /* Center the image horizontally */
+
+                @include m.tablet {
+                    width: 8rem;
+                    height: 8rem;
+                }
+            }
+        }
+
+        .boton-editar {
+            border-radius: 1rem;
+        }
+
+        .form-eliminar {
+            display: inline-block;
+
+            .boton-eliminar {
+                border-radius: 1rem;
+            }
+        }
+    }
+}
+
+.formulario-producto {
+
+    span {
+        color: v.$rosaClaro;
+    }
+
+    .contenedor {
+
+        .alerta {
+            border-radius: 1rem;
+        }
+
+        .formulario {
+            p {
+                font-size: 1.4rem;
+                color: v.$gris;
+                margin: 2rem 0 0 0;
+            }
+        
+            legend {
+                font-size: 2rem;
+                color: v.$rosa;
+            }
+        
+            label {
+                font-weight: v.$bold;
+                text-transform: uppercase;
+                display: block;
+            }
+            input:not([type="submit"]),
+            textarea,
+            select {
+                padding: 1rem;
+                display: block;
+                width: 100%;
+                background-color: v.$blanco;
+                border: 1px solid v.$gris;
+                border-radius: 1rem;
+                margin-bottom: 2rem;
+            }
+        
+            textarea {
+                height: 20rem;
+            }
+
+            .boton-aprobar {
+                border-radius: 1rem;
+            }
+        }
+    }
+}
+

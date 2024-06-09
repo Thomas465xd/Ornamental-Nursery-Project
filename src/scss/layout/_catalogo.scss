@@ -26,3 +26,23 @@
         }
     }
 }
+
+.detalles-producto {
+
+    h1 {
+        padding: 1rem 0;
+    }
+
+    .contenedor {
+
+        .info-producto {
+            display: flex;
+
+            img {
+                width: 50rem;
+                height: 50rem;
+            }
+        }
+
+    }
+}

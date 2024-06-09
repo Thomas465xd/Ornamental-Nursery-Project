@@ -35,6 +35,19 @@ class PaginasController
         ]);
     }
 
+    public static function producto( Router $router ) {
+        // Obtener el ID del producto desde la URL
+        $id = $_GET['id'];
+
+        // Obtener los detalles del producto con el ID proporcionado
+        $producto = Producto::find($id);
+
+        // Renderizar la plantilla de detalles del producto
+        $router->render('paginas/producto', [
+            'producto' => $producto
+        ]);
+    }
+
     public static function contacto( Router $router ) {
 
         $mensaje = null;

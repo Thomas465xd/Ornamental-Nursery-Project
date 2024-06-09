@@ -136,7 +136,7 @@
                         </li>
                         <li>
                             <?php if ($_SESSION["admin"]) { ?>
-                                <a href="/admin">
+                                <a href="/producto/admin">
                                     <ion-icon name="cog-outline" id="admin" class="nav-login"></ion-icon>
                                 </a>
                             <?php } ?>
@@ -179,6 +179,9 @@
                     <a href="/nosotros">nosotros</a>
                     <a href="/productos">productos</a>
                     <a href="/contacto">contacto</a>
+                    <?php if(isset($_SESSION["admin"]) && $_SESSION["admin"] === "1") : ?>
+                        <a href="/producto/admin">Administrador</a>
+                    <?php endif; ?>
                 </div>
 
                 <div class="box">

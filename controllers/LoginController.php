@@ -155,7 +155,7 @@ class LoginController {
         ]);
     }
 
-    public static function crear(Router $router) {
+    public static function registrar(Router $router) {
 
         $usuario = new Usuario;
 

@@ -32,7 +32,7 @@
                     <h3><?php echo $producto->nombre; ?></h3>
                     
                     <!-- Precio del producto -->
-                    <div class="price">Precio: <?php echo $producto->precio; ?></div>
+                    <div class="price">Precio: $ <?php echo $producto->precio; ?></div>
 
                     <!-- formulario invisible -->
                     <form action="/carrito" method="post" id="formulario-carrito" name="formulario">

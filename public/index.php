@@ -32,8 +32,8 @@ $router->get("/recuperar", [LoginController::class, "recuperar"]);
 $router->post("/recuperar", [LoginController::class, "recuperar"]);
 
 // Crear Cuenta
-$router->get("/crear-cuenta", [LoginController::class, "crear"]);
-$router->post("/crear-cuenta", [LoginController::class, "crear"]);
+$router->get("/crear-cuenta", [LoginController::class, "registrar"]);
+$router->post("/crear-cuenta", [LoginController::class, "registrar"]);
 
 // Confirmar la cuenta
 $router->get("/confirmar-cuenta", [LoginController::class, "confirmar"]);
@@ -46,7 +46,7 @@ $router->get("/informacion", [PaginasController::class, "cuenta"]);
 $router->get("/orden", [PaginasController::class, "orden"]);
 $router->get("/favoritos", [PaginasController::class, "favoritos"]);
 
-// Carrito y Pago
+// Carrito y Overview
 $router->get("/compra", [PaginasController::class, "compra"]);
 $router->post("/compra", [PaginasController::class, "compra"]);
 
@@ -55,11 +55,11 @@ $router->post("/compra/agregar", [PaginasController::class, "agregar"]);
 
 $router->post("/carrito", [PaginasController::class, "carrito"]);
 
-$router->get('/confirmar', [PaginasController::class, "confirmar"]);
-$router->post('/confirmar', [PaginasController::class, "confirmar"]);
-
 $router->post('/carrito/vaciar', [PaginasController::class, "vaciarCarrito"]);
 
+// Checkout y Pago
+$router->get('/confirmar', [PaginasController::class, "confirmar"]);
+$router->post('/confirmar', [PaginasController::class, "confirmar"]);
 
 // Administración
 $router->get("/producto/admin", [ProductoController::class, "index"]);

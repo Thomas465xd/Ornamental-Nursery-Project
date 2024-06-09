@@ -36,13 +36,14 @@ class ActiveRecord {
     // Eliminacion de archivos
     public function borrarImagen() {
         // Comprobar si existe el archivo
-        $existeArchivo = file_exists(CARPETA_IMAGENES . $this->imagen);
+        $existeArchivo = file_exists(CARPETA_IMAGENES . $this->imagen_url);
         if($existeArchivo) {
-            unlink(CARPETA_IMAGENES . $this->imagen);
+            unlink(CARPETA_IMAGENES . $this->imagen_url);
         }
     }
 
     // Validación
+
     public static function getAlertas() {
         return static::$alertas;
     }
@@ -184,6 +185,14 @@ class ActiveRecord {
         // Sanitizar los datos
         $atributos = $this->sanitizarAtributos();
 
+        // Verificar si se proporciona una nueva imagen
+        if (isset($atributos['imagen_url'])) {
+            // Si se proporciona una nueva imagen, actualizamos el atributo imagen_url
+            $this->imagen_url = $atributos['imagen_url'];
+            // Eliminamos el atributo imagen_url del array de atributos para evitar que se actualice en la base de datos
+            unset($atributos['imagen_url']);
+        }
+
         // Iterar para ir agregando cada campo de la BD
         $valores = [];
         foreach($atributos as $key => $value) {
@@ -205,6 +214,14 @@ class ActiveRecord {
     public function eliminar() {
         $query = "DELETE FROM "  . static::$tabla . " WHERE id = " . self::$db->escape_string($this->id) . " LIMIT 1";
         $resultado = self::$db->query($query);
+
+        if ($resultado) {
+            $this->borrarImagen();
+
+            // Redireccionar al usuario.
+            header("Location: /producto/admin");
+        }
+
         return $resultado;
     }
 

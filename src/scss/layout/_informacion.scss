@@ -1,0 +1,96 @@
+@use "base/variables" as v;
+@use "base/mixins" as m;
+
+.informacion-seccion {
+    padding: 20px;
+    background-color: v.$grisClaro;
+    border-radius: 10px;
+    margin-bottom: 20px;
+
+    .informacion {
+        h2 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: v.$rosa;
+        }
+
+        .contenedor {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+
+            .contenedor-seccion {
+                width: 48%;
+
+                .formulario {
+                    margin-bottom: 20px;
+
+                    .datos-cuenta {
+                        label {
+                            font-weight: bold;
+                            margin-bottom: 5px;
+                        }
+
+                        input {
+                            width: 100%;
+                            padding: 10px;
+                            margin-bottom: 15px;
+                            border: 1px solid v.$rosa;
+                            border-radius: 5px;
+                            transition: border-color 0.3s;
+
+                            &:focus {
+                                outline: none;
+                                border-color: v.$rosa;
+                            }
+                        }
+                    }
+                }
+                
+                .image {
+                    width: 100%;
+                    margin-top: 20px;
+                    display: flex;
+                    justify-content: center;
+                }
+            }
+
+            .formulario-direccion {
+                width: calc(48% - 20px);
+                padding: 20px;
+                background-color: v.$blanco;
+                border-radius: 10px;
+
+                h2 {
+                    font-size: 1.3rem;
+                    margin-bottom: 15px;
+                    color: v.$blanco;
+                }
+
+                fieldset {
+                    border: none;
+                    padding: 0;
+
+                    label {
+                        font-weight: bold;
+                        margin-bottom: 5px;
+                    }
+
+                    input {
+                        width: 100%;
+                        padding: 10px;
+                        margin-bottom: 15px;
+                        border: 1px solid v.$rosa;
+                        border-radius: 5px;
+                        transition: border-color 0.3s;
+
+                        &:focus {
+                            outline: none;
+                            border-color: v.$blanco;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
