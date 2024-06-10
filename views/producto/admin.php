@@ -43,7 +43,42 @@
 
         <h2 style="margin-top: 5rem">Ordenes 📦</h2>
         <!-- Agrega aquí el código para mostrar y gestionar las órdenes -->
-
+        <table class="ordenes">
+            <thead>
+                <tr>
+                    <th>ID Orden</th>
+                    <th>Fecha</th>
+                    <th>Total</th>
+                    <th>Estado</th>
+                    <th>Productos</th>
+                    <th>Cantidad</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($ordenes as $orden) : ?>
+                <tr>
+                    <td><?php echo $orden->id; ?></td>
+                    <td><?php echo $orden->fecha_orden; ?></td>
+                    <td>$<?php echo $orden->total; ?></td>
+                    <td><?php echo $orden->estado; ?></td>
+                    <td>
+                        <ul>
+                            <?php foreach ($orden->productos as $producto) : ?>
+                            <li><?php echo $producto->nombre; ?></li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            <?php foreach ($orden->productos as $producto) : ?>
+                            <li><?php echo $producto->cantidad; ?></li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </td>
+                </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
         
     </div>
 </section>

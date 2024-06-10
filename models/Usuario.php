@@ -40,8 +40,10 @@ class Usuario extends ActiveRecord {
             self::$alertas["error"][] = "El Apellido es Obligatorio";
         }
 
-        if(!$this->telefono) {
-            self::$alertas["error"][] = "El Teléfono es Obligatorio";
+        if(empty($this->telefono)) {
+            $alertas[] = "El teléfono es obligatorio.";
+        } elseif (!preg_match('/^\d{9}$/', $this->telefono)) {
+            $alertas[] = "El teléfono debe estar escrito en el formato 9 1234 5678.";
         }
 
         if(!$this->email) {
@@ -88,6 +90,31 @@ class Usuario extends ActiveRecord {
             self::$alertas["error"][] = "El Password debe tener al menos 6 caracteres";
         }
 
+        return self::$alertas;
+    }
+
+    public function validarActualizar() {
+        if(!$this->nombre) {
+            self::$alertas["error"][] = "El Nombre es obligatorio";
+        }
+
+        if(!$this->apellido) {
+            self::$alertas["error"][] = "El Apellido es obligatorio";
+        }
+
+        // Validación para el teléfono
+        if(!$this->telefono) {
+            $alertas[] = "El teléfono es obligatorio.";
+        } elseif (!preg_match('/^\d{9}$/', $this->telefono)) {
+            $alertas[] = "El teléfono debe tener exactamente 9 dígitos.";
+        }
+
+        // Validación para el email
+        if(empty($this->email)) {
+            $alertas[] = "El email es obligatorio.";
+        } elseif (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
+            $alertas[] = "El email no es válido.";
+        }
         return self::$alertas;
     }
 

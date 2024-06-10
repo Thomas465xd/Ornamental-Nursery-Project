@@ -4,6 +4,7 @@ require_once __DIR__ . '/../includes/app.php';
 
 use MVC\Router;
 use Controllers\LoginController;
+use Controllers\ComprasController;
 use Controllers\PaginasController;
 use Controllers\ProductoController;
 
@@ -41,6 +42,9 @@ $router->get("/mensaje", [LoginController::class, "mensaje"]);
 
 // Cuenta
 $router->get("/informacion", [PaginasController::class, "cuenta"]);
+$router->post("/informacion", [PaginasController::class, "cuenta"]);
+
+$router->post("/informacion/envio", [PaginasController::class, "envio"]);
 
 // Informacion Pedidos y Carrito
 $router->get("/orden", [PaginasController::class, "orden"]);
@@ -58,8 +62,8 @@ $router->post("/carrito", [PaginasController::class, "carrito"]);
 $router->post('/carrito/vaciar', [PaginasController::class, "vaciarCarrito"]);
 
 // Checkout y Pago
-$router->get('/confirmar', [PaginasController::class, "confirmar"]);
-$router->post('/confirmar', [PaginasController::class, "confirmar"]);
+$router->get('/confirmar', [ComprasController::class, "confirmar"]);
+$router->post('/confirmar', [ComprasController::class, "confirmar"]);
 
 // Administración
 $router->get("/producto/admin", [ProductoController::class, "index"]);

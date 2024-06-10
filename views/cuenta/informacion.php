@@ -2,25 +2,29 @@
 
 <section class="informacion-seccion">
     <div class="informacion">
-        <h2>Datos de la Cuenta</h2>
+
+        <?php 
+            include_once __DIR__ . "/../templates/alertas.php";
+        ?>
 
         <div class="contenedor">
-            <div class="contenedor-seccion">
-                <form class="formulario" method="POST" action="/actualizar-datos">
+            <div class="contenedor-datos">
+                <form class="formulario" method="POST" action="/informacion">
                     <div class="datos-cuenta">
                         <label for="nombre">Nombre:</label>
-                        <input type="text" id="nombre" name="nombre" value="<?php echo s($nombre ?? ''); ?>" placeholder="Tu Nombre">
+                        <input type="text" id="nombre" name="nombre" value="<?php echo s($usuario->nombre ?? ''); ?>" placeholder="Tu Nombre">
 
                         <label for="apellido">Apellido:</label>
                         <input type="text" id="apellido" name="apellido" value="<?php echo s($usuario->apellido); ?>" placeholder="Tu Apellido">
 
                         <label for="telefono">Teléfono:</label>
-                        <input type="text" id="telefono" name="telefono" value="<?php echo s($usuario->telefono); ?>" placeholder="Tu Teléfono">
+                        <input type="number" id="telefono" name="telefono" value="<?php echo s($usuario->telefono); ?>" placeholder="Tu Teléfono">
 
                         <label for="email">Email:</label>
                         <input type="email" id="email" name="email" value="<?php echo s($usuario->email); ?>" placeholder="Tu Email" readonly>
                     </div>
                     
+                    <input type="hidden" name="formulario" value="datos_cuenta">
                     <input type="submit" value="Guardar Cambios" class="boton-aprobar">
                 </form>
 
@@ -34,34 +38,44 @@
             </div>
     
             <div class="formulario-direccion">
-                <h2>Dirección de Envío</h2>
+                <h2>Formulario de Envío 📦🏠</h2>
     
-                <form class="formulario" method="POST">
+                <form action="/informacion" class="formulario" method="POST">
                     <fieldset>
                         <legend>Información de Envío</legend>
     
                         <label for="direccion">Dirección:</label>
-                        <input type="text" id="direccion" name="direccion" placeholder="Tu Dirección" value="<?php echo s($usuario->direccion); ?>">
+                        <input type="text" id="direccion" name="direccion_envio" placeholder="Tu Dirección" value="<?php echo s($envio->direccion_envio); ?>">
     
                         <label for="ciudad">Ciudad:</label>
-                        <input type="text" id="ciudad" name="ciudad" placeholder="Tu Ciudad" value="<?php echo s($usuario->ciudad); ?>">
+                        <input type="text" id="ciudad" name="ciudad" placeholder="Tu Ciudad" value="<?php echo s($envio->ciudad); ?>">
     
-                        <label for="pais">País:</label>
-                        <input type="text" id="pais" name="pais" placeholder="Tu País" value="<?php echo s($usuario->pais); ?>">
+                        <label for="region">Región:</label>
+                        <select id="region" name="region">
+                            <option value="" disabled>Selecciona tu región</option>
+                            <?php foreach ($regiones_permitidas as $region_opcion) : ?>
+                                <option value="<?php echo $region_opcion; ?>" <?php echo ($envio && $envio->region === $region_opcion) ? 'selected' : ''; ?>>
+                                    <?php echo $region_opcion; ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
     
                         <label for="codigo_postal">Código Postal:</label>
-                        <input type="text" id="codigo_postal" name="codigo_postal" placeholder="Tu Código Postal" value="<?php echo s($usuario->codigo_postal); ?>">
+                        <input type="number" id="codigo_postal" name="codigo_postal" placeholder="Tu Código Postal" value="<?php echo s($envio->codigo_postal); ?>">
     
-                        <input type="submit" value="Guardar Cambios" class="boton-verde">
                     </fieldset>
+
+                    <input type="hidden" name="formulario" value="datos_envio">
+                    <input type="submit" value="Guardar Cambios" class="boton-aprobar">
+
                 </form>
             </div>
         </div>
     </div>
 
     <div class="botones">
-        <a href="#" class="boton-azul"></a>
-        <a href="#" class="boton-editar">Reestablecer Contraseña</a>
+        <a href="/olvide-password" class="boton-editar">Reestablecer Contraseña</a>
         <a href="/logout" class="boton-eliminar">Cerrar Sesión</a>
+        <a href="/orden" class="boton-azul">Ver Ordenes</a>
     </div>
 </section>

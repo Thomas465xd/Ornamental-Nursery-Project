@@ -3,12 +3,10 @@
 namespace Controllers;
 
 use MVC\Router;
-use Classes\Email;
-use Model\Usuario; // Importa la clase Usuario
-use Model\Producto; // Importa la clase Producto
-use Transbank\Webpay\Webpay;
-use Transbank\Webpay\Configuration;
-use Transbank\Webpay\WebpayPlus\Transaction;
+use Model\Envio;
+use Classes\Email; // Importa la clase Usuario
+use Model\Usuario; // Importa la clase Producto
+use Model\Producto;
 
 class PaginasController
 {
@@ -74,7 +72,8 @@ class PaginasController
     // Cuenta y pedidos
 
     public static function cuenta( Router $router ) {
-        session_start();
+
+        $alertas = [];
 
         // Asegúrate de que el usuario esté autenticado
         if(!isset($_SESSION['id'])) {
@@ -86,6 +85,13 @@ class PaginasController
         $usuario_id = $_SESSION['id'];
         $usuario = Usuario::find($usuario_id);
 
+        // Lista de regiones permitidas (debe coincidir con las definidas en el ENUM de la base de datos)
+        $regiones_permitidas = [
+            "Arica y Parinacota", "Tarapacá", "Antofagasta", "Atacama", "Coquimbo", "Valparaíso",
+            "Metropolitana", "O'Higgins", "Maule", "Ñuble", "Biobío", "Araucanía",
+            "Los Ríos", "Los Lagos", "Aysén", "Magallanes y Antártica Chilena"
+        ];
+
         // Verificar si se encontró el usuario
         if(!$usuario) {
             // Redirigir al login o mostrar un error
@@ -93,10 +99,86 @@ class PaginasController
             return;
         }
 
-        // Renderizar la vista y pasar el objeto $usuario
+        // Verificar si hay datos de envío para el usuario
+        $envio = Envio::where('id_usuario', $usuario_id);
+
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+
+            $usuario->sincronizar($_POST);
+            $alertas = $usuario->validarActualizar();
+
+            if(empty($alertas)) {
+                if ($_POST['formulario'] === 'datos_cuenta') {
+                    // Lógica para guardar los datos de la cuenta
+                    $nombre = $_POST['nombre'];
+                    $apellido = $_POST['apellido'];
+                    $telefono = $_POST['telefono'];
+                    $email = $_POST['email'];
+    
+                    // Actualizar los datos de cuenta del usuario
+                    $usuario->nombre = $nombre;
+                    $usuario->apellido = $apellido;
+                    $usuario->telefono = $telefono;
+                    $usuario->email = $email;
+                    //debug($usuario);    
+                    $usuario->guardar();
+    
+                    // Alerta de exito
+                    Usuario::setAlerta("exito", "Los datos de cuenta se han actualizado correctamente.");
+
+                } else if ($_POST['formulario'] === 'datos_envio') {
+                    //debug($_POST);
+
+                    // Lógica para manejar los datos de envío
+                    $envio->sincronizar($_POST);
+                    $alertas_envio = $envio->validar();
+    
+                    if (empty($alertas_envio)) {
+                        // Procesar los datos de envío si la validación es exitosa
+                        $direccion = $_POST['direccion_envio'];
+                        $ciudad = $_POST['ciudad'];
+                        $codigo_postal = $_POST['codigo_postal'];
+                        $region = $_POST['region'];
+    
+                        if ($envio) {
+                            // Si existe un registro de envío para el usuario, actualizar los datos
+                            $envio->direccion_envio = $direccion;
+                            $envio->ciudad = $ciudad;
+                            $envio->codigo_postal = $codigo_postal;
+                            $envio->region = $region;
+                            $envio->guardar();
+
+                        } else {
+                            // Si no existe un registro de envío, crear uno nuevo
+                            $nuevo_envio = new Envio([
+                                'id_usuario' => $usuario_id,
+                                'direccion_envio' => $direccion,
+                                'ciudad' => $ciudad,
+                                'codigo_postal' => $codigo_postal,
+                                'region' => $region
+                            ]);
+    
+                            $nuevo_envio->guardar();
+                        }
+    
+                        // Alerta de éxito para los datos de envío
+                        Envio::setAlerta("exito", "Los datos de envío se han actualizado correctamente.");
+                        $alertas_envio = $envio->getAlertas();
+                    }
+                }
+            }
+        }
+
+        $alertas = $usuario->getAlertas();
+
+    
+        // Renderizar la vista y pasar el objeto $usuario, los datos de envío y las alertas
         $router->render('cuenta/informacion', [
             'usuario' => $usuario,
-            'nombre' => $_SESSION['nombre']
+            'nombre' => $_SESSION['nombre'],
+            'envio' => $envio,
+            'alertas' => $alertas,
+            'regiones_permitidas' => $regiones_permitidas
         ]);
     }
 
@@ -221,32 +303,10 @@ class PaginasController
             // Encontrar el índice del producto en el carrito
             foreach ($carrito as $i => $producto) {
                 if ($producto['ref'] === $ref) {
-                    // Disminuir la cantidad del producto en 1
-                    $carrito[$i]['cantidad']--;
-                    // Si la cantidad llega a 0, eliminar el producto del carrito
-                    if ($carrito[$i]['cantidad'] <= 0) {
-                        unset($carrito[$i]);
-                    }
+                    // Eliminar el producto del carrito
+                    unset($carrito[$i]);
                     // Actualizar el carrito en la sesión
                     $_SESSION['carrito'] = array_values($carrito);
-                    // Redireccionar de vuelta a la página de compra
-                    header('Location: /compra');
-                    return;
-                }
-            }
-        }
-
-        // Procesar la solicitud de aumento de la cantidad de un producto en el carrito
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['agregar']) && isset($_POST['ref'])) {
-            $ref = $_POST['ref'];
-
-            // Encontrar el índice del producto en el carrito
-            foreach ($carrito as $i => $producto) {
-                if ($producto['ref'] === $ref) {
-                    // Aumentar la cantidad del producto en 1
-                    $carrito[$i]['cantidad']++;
-                    // Actualizar el carrito en la sesión
-                    $_SESSION['carrito'] = $carrito;
                     // Redireccionar de vuelta a la página de compra
                     header('Location: /compra');
                     return;
@@ -331,9 +391,10 @@ class PaginasController
         
         $router->render('/cuenta/confirmar', [
             "carrito" => $carrito,
-        ]);
+        ]); 
     }
 
+    // Procesar la compra
     public static function procesar(Router $router) {
         session_start();
 

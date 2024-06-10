@@ -46,7 +46,13 @@
                             </form>
 
                         </div>
-
+                            
+                        <!-- Botón para eliminar el producto -->
+                        <form action="/compra" method="post">
+                            <input type="hidden" name="ref" value="<?php echo $producto['ref']; ?>">
+                            <input type="hidden" name="eliminar" value="1">
+                            <button type="submit" class="boton-eliminar">Eliminar Producto</button>
+                        </form>
                     </div>
                 </div>
             <?php endforeach; ?>

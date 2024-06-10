@@ -9,6 +9,14 @@ use Model\Usuario;
 class LoginController {
     public static function login(Router $router) {
 
+        // Verificar si el usuario ya está autenticado
+        if (isset($_SESSION["login"]) && $_SESSION["login"] === true) {
+            // Redirigir al usuario a otra página, por ejemplo, el dashboard
+            header("Location: /");
+            exit(); // Finalizar la ejecución del script después de redirigir
+        }
+
+
         $alertas = [];
 
         $auth = new Usuario;
@@ -31,7 +39,8 @@ class LoginController {
                         session_start();
 
                         $_SESSION["id"] = $usuario->id;
-                        $_SESSION["nombre"] = $usuario->nombre . " " . $usuario->apellido;
+                        $_SESSION["nombre"] = $usuario->nombre;
+                        $_SESSION["apellido"] = $usuario->apellido;
                         $_SESSION["email"] = $usuario->email;
                         $_SESSION["login"] = true;
 
@@ -156,6 +165,13 @@ class LoginController {
     }
 
     public static function registrar(Router $router) {
+
+        // Verificar si el usuario ya está autenticado
+        if (isset($_SESSION["login"]) && $_SESSION["login"] === true) {
+            // Redirigir al usuario a otra página, por ejemplo, el dashboard
+            header("Location: /");
+            exit(); // Finalizar la ejecución del script después de redirigir
+        }
 
         $usuario = new Usuario;
 

@@ -8,14 +8,16 @@
             <img loading="lazy" src="/imagenes/<?php echo $producto->imagen_url; ?>" alt="imagen de la producto">
         
             <div class="resumen-producto">
-                <p class="precio">$<?php echo $producto->precio; ?></p>
+                <p class="precio">Precio: $<?php echo $producto->precio; ?> C/U</p>
         
                 <p><?php echo $producto->descripcion; ?></p>
 
                 <!-- Acciones del producto -->
-                <div class="acciones-producto">
+                <div class="producto-acciones">
                     <a href="/carrito/agregar?id=<?php echo $producto->id; ?>" class="boton-aprobar">Comprar</a>
                     <!-- Aquí puedes agregar más acciones, como agregar al carrito -->
+                    <a href="/productos" class="boton-editar">Volver a Productos</a>
+
                     <!-- formulario invisible -->
                     <form action="/carrito" method="post" id="formulario-carrito" name="formulario">
                         <a class="category">
@@ -35,7 +37,7 @@
                             </div>
                     </form>
                 </div>
-            </div>
+            </div> 
         </div>
     </div>
 </main>

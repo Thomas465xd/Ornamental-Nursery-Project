@@ -29,7 +29,7 @@ class ActiveRecord {
 
         // Asignar al atributo de imagen el nombre de la imagen
         if($imagen) {
-            $this->imagen = $imagen;
+            $this->imagen_url = $imagen;
         }
     }
 
@@ -184,14 +184,6 @@ class ActiveRecord {
     public function actualizar() {
         // Sanitizar los datos
         $atributos = $this->sanitizarAtributos();
-
-        // Verificar si se proporciona una nueva imagen
-        if (isset($atributos['imagen_url'])) {
-            // Si se proporciona una nueva imagen, actualizamos el atributo imagen_url
-            $this->imagen_url = $atributos['imagen_url'];
-            // Eliminamos el atributo imagen_url del array de atributos para evitar que se actualice en la base de datos
-            unset($atributos['imagen_url']);
-        }
 
         // Iterar para ir agregando cada campo de la BD
         $valores = [];

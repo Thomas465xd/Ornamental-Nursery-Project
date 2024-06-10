@@ -3,7 +3,9 @@
 namespace Controllers;
 
 use MVC\Router;
+use Model\Orden;
 use Model\Producto;
+use Model\DetallesOrden;
 use Intervention\Image\ImageManagerStatic as Image;
 
 class ProductoController {
@@ -15,6 +17,8 @@ class ProductoController {
         }
 
         $productos = Producto::all();
+        $ordenes = Orden::all();
+        $DetallesOrdenes = DetallesOrden::all();
 
         // Arreglo con mensajes de errores
         $errores = Producto::getAlertas();
@@ -24,6 +28,8 @@ class ProductoController {
 
         $router->render("producto/admin", [
             "productos" => $productos, 
+            "ordenes" => $ordenes,
+            "DetallesOrdenes" => $DetallesOrdenes,
             "resultado" => $resultado
         ]);
     }
@@ -120,7 +126,10 @@ class ProductoController {
             // Subida de archivos
             if($_FILES["producto"]["tmp_name"]["imagen_url"]) {
 
-            $image = Image::make($_FILES["producto"]["tmp_name"]["imagen_url"])->fit(800, 600);
+                $image = Image::make($_FILES["producto"]["tmp_name"]["imagen_url"])->resize(800, 600, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                });
             $producto->setImagen($nombreImagen);
 
         }

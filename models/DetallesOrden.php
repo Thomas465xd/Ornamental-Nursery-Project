@@ -2,7 +2,7 @@
 
 namespace Model;
 
-class DetalleOrden extends ActiveRecord {
+class DetallesOrden extends ActiveRecord {
 
     protected static $tabla = 'detalles_ordenes';
     protected static $columnasDB = ['id', 'id_orden', 'id_producto', 'cantidad', 'precio'];
