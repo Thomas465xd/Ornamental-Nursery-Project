@@ -79,24 +79,23 @@
     }
 }
 
+h1 {
+    margin-top: 2rem;
+    color: v.$negro;
+    background-color: rgba(255, 51, 153, .05);
+    padding: 3rem;
+    margin-bottom: 1rem;
 
+    span {
+        color: v.$rosa;
+    }
+}
 
 .contenedor-seccion {
     padding: 2rem;;
     border-radius: 1rem;
     margin-top: 2rem;
 
-    h1 {
-        margin-top: 2rem;
-        color: v.$negro;
-        background-color: rgba(255, 51, 153, .05);
-        padding: 3rem;
-        margin-bottom: 1rem;
-
-        span {
-            color: v.$rosa;
-        }
-    }
 
     iframe {
         width: 100%;

@@ -33,6 +33,13 @@
         padding: 1rem 0;
     }
 
+    .categoria {
+        font-weight: bold;
+        font-size: 2rem;
+        color: v.$grisOscuro;
+        margin-top: 1rem;
+    }
+
     .contenedor {
 
         .info-producto {
@@ -71,6 +78,11 @@
                 align-items: center;
                 justify-content: space-between;
 
+                p {
+                    border-bottom: 1px solid v.$gris;
+                    line-height: 2.5rem;
+                }
+
                 p.precio {
                     font-size: 2rem;
                     font-weight: bold;
@@ -81,20 +93,183 @@
                     margin-top: 2rem;
                     display: flex;
                     flex-direction: column;
-                    gap: 1rem;
+                    gap: 3rem;
 
                     .boton-aprobar,
-                    .boton-editar,
-                    .boton {
+                    .boton-editar {
                         border-radius: 1rem;
                     }
 
                     @include m.tabletV2 {
                         flex-direction: row; /* Change to row on larger screens */
+                        justify-content: flex-start; /* Alinear al inicio */
+                        align-items: center;
+                    }
+                }
+
+                .carrito-agregar {
+                    
+                    .boton {
+                        border-radius: 1rem;
+                    }
+                }
+
+                h3 {
+                    padding: 1rem 0;
+                    border-top: 1px solid v.$gris;
+                    width: 100%; /* Asegura que el título ocupe todo el ancho */
+                    text-align: center; /* Centra el título */
+                }
+
+                .descripcion-producto {
+                    border-top: 1px solid v.$gris;
+                    width: 100%; /* Asegura que la descripción ocupe todo el ancho */
+                    text-align: justify;
+
+                    p {
+                        padding: 1rem;
+                    }
+                }
+
+                .compartir-url {
+                    position: relative;
+                    width: 30rem;
+                    margin-top: 2rem;
+
+                    .icono-compartir {
+                        color: v.$rosaClaro;
+                        text-decoration: none;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        gap: 0.5rem;
+                        font-size: 1.5rem;
+                        cursor: pointer;
+                        transition: color 0.3s ease;
+                        background: v.$blanco;
+                        border: none;
+
+                        svg {
+                            width: 3rem;
+                            height: 3rem;
+                        }
+
+                        &:hover {
+                            color: v.$rosa;
+                        }
+                    }
+
+                    .share-options {
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+                        margin-top: 3rem;
+                        margin-right: -5rem;
+                        width: 30rem;
+                        padding: 1.5rem;
+                        border-radius: 1rem;
+                        background: rgba(15, 15, 15, 0.5);
+                        color: v.$blanco;
+                        transition: 0.3s;
+                        z-index: 1;
+                        display: none; /* Initially hidden */
+                        transform-origin: top right;
+                        transform: scale(0);
+                        opacity: 0;
+
+                        &.show {
+                            display: block;
+                            transform: scale(1);
+                            opacity: 1;
+                            transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+                        }
+
+                        .titulo {
+                            font-size: 2rem;
+                            text-transform: capitalize;
+                            width: fit-content;
+                            border-bottom: 1px solid v.$blanco;
+                            color: v.$blanco;
+                        }
+
+                        .redes-sociales {
+                            width: 100%;
+                            display: flex;
+                            align-items: center;
+                            flex-wrap: wrap;
+                            margin: 1rem 0;
+                            gap: 2rem;
+
+                            .social-media-btn {
+                                border: none;
+                                width: 5rem;
+                                height: 5rem;
+                                border-radius: 50%;
+                                background: v.$negro;
+                                color: v.$blanco;
+                                line-height: 2.5rem;
+                                cursor: pointer;
+                                text-align: center;
+
+                                &:nth-child(1) {
+                                    background-color: #25d366;
+                                }
+
+                                &:nth-child(2) {
+                                    background-color: #e4405f;
+                                }
+
+                                &:nth-child(3) {
+                                    background-color: #1877f2;
+                                }
+
+                                &:nth-child(4) {
+                                    background-color: #ffa654;
+                                }
+
+                                &:nth-child(5) {
+                                    background-color: #0a66c2;
+                                }
+
+                                &:nth-child(6) {
+                                    background-color: #000;
+                                }
+
+                                &:nth-child(7) {
+                                    background-color: v.$grisOscuro;
+                                }
+                            }
+                        }
+
+                        .link-container {
+                            width: 100%;
+                            height: 4rem;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            background: rgba(15, 15, 15, 0.5);
+                            color: v.$blanco;
+                            border-radius: 1rem;
+
+                            .link {
+                                width: 80%;
+                                height: 100%;
+                                line-height: 6rem;
+                                color: v.$blanco;
+                            }
+
+                            .copy-btn {
+                                background: none;
+                                border: none;
+                                color: v.$blanco;
+                                cursor: pointer;
+                                padding: 0 1rem;
+                                font-size: 1rem;
+                            }
+                        }
                     }
                 }
             }
         }
-
     }
-}  
+}

@@ -12,6 +12,7 @@ class DetallesOrden extends ActiveRecord {
     public $id_producto;
     public $cantidad;
     public $precio;
+    public $nombre;  // Agregar la propiedad nombre
 
     public function __construct($args = []) {
         $this->id = $args['id'] ?? null;
@@ -40,5 +41,14 @@ class DetallesOrden extends ActiveRecord {
 
         return self::$alertas;
     }
+
+    public static function obtenerProductosPorOrden($id_orden) {
+        $query = "SELECT p.nombre, do.cantidad 
+            FROM " . static::$tabla . " do
+            JOIN productos p ON do.id_producto = p.id
+            WHERE do.id_orden = " . $id_orden;
+        return self::consultarSQL($query);
+    }
 }
-?>
+
+

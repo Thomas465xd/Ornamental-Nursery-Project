@@ -48,7 +48,7 @@
         <img src="../../build/img/icon-2.svg" alt="entrega">
         <div class="info">
             <h3>Pago Seguro</h3>
-            <span>Protegido por PayPal</span>
+            <span>Protegido por Mercado Pago</span>
         </div>
     </div>
 

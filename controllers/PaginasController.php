@@ -14,13 +14,13 @@ class PaginasController
     {
 
         $router->render("paginas/index", [
-
+            'titulo' => 'Pagina Principal',
         ]);
     }
 
     public static function nosotros( Router $router ) {
         $router->render('paginas/nosotros', [
-
+            'titulo' => 'Sobre Nosotros',
         ]);
     }
 
@@ -29,7 +29,8 @@ class PaginasController
         $productos = Producto::all();
 
         $router->render('paginas/productos', [
-            'productos' => $productos
+            'productos' => $productos, 
+            'titulo' => 'Nuestros Productos',
         ]);
     }
 
@@ -40,9 +41,14 @@ class PaginasController
         // Obtener los detalles del producto con el ID proporcionado
         $producto = Producto::find($id);
 
+        // Generar la URL completa del producto
+        $url = "https://lastresmarias.cl/producto?id={$id}";
+
         // Renderizar la plantilla de detalles del producto
         $router->render('paginas/producto', [
-            'producto' => $producto
+            'producto' => $producto,
+            'url' => $url, 
+            'titulo' => 'Detalles del Producto',
         ]);
     }
 
@@ -65,7 +71,8 @@ class PaginasController
         }
 
         $router->render('paginas/contacto', [
-            "mensaje" => $mensaje
+            "mensaje" => $mensaje, 
+            'titulo' => 'Contactanos',
         ]);
     }
 
@@ -178,19 +185,20 @@ class PaginasController
             'nombre' => $_SESSION['nombre'],
             'envio' => $envio,
             'alertas' => $alertas,
-            'regiones_permitidas' => $regiones_permitidas
+            'regiones_permitidas' => $regiones_permitidas, 
+            'titulo' => 'Información de cuenta',
         ]);
     }
 
     public static function orden( Router $router ) {
         $router->render('cuenta/orden', [
-
+            'titulo' => 'Mis ordenes',
         ]);
     }
 
     public static function favoritos( Router $router ) {
         $router->render('cuenta/favoritos', [
-
+            'titulo' => 'Productos Favoritos',
         ]);
     }
 
@@ -317,6 +325,7 @@ class PaginasController
         // Renderizar la página de compra
         $router->render('/cuenta/compra', [
             "carrito" => $_SESSION['carrito'],
+            'titulo' => 'Ver Carrito',
         ]);
     }
 

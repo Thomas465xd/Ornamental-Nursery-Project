@@ -98,3 +98,32 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
     }
 });
+
+// Icono Compartir
+document.addEventListener('DOMContentLoaded', function () {
+    const shareBtn = document.querySelector('.icono-compartir');
+    const shareOptions = document.querySelector('.share-options');
+    const copyBtn = document.getElementById('copy-btn');
+    const linkUrl = document.getElementById('link-url');
+
+    shareBtn.addEventListener('click', () => {
+        shareOptions.classList.toggle('show');
+    });
+
+    document.addEventListener('click', function (event) {
+        if (!shareBtn.contains(event.target) && !shareOptions.contains(event.target)) {
+            shareOptions.classList.remove('show');
+        }
+    });
+
+    copyBtn.addEventListener('click', () => {
+        const url = linkUrl.textContent;
+        navigator.clipboard.writeText(url).then(() => {
+            alert('URL copiada al portapapeles');
+        }).catch(err => {
+            console.error('Error al copiar la URL: ', err);
+        });
+    });
+});
+
+

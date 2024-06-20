@@ -1,6 +1,8 @@
 <?php 
 
 namespace Classes;
+
+use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\PHPMailer;
 
 class Email {
@@ -266,5 +268,60 @@ class Email {
         }
 
         return $mensaje;
+    }
+
+    // Emails de administracion y envíos
+    public function enviarEnvio() {
+
+        // Crear el objeto de email
+        $mail = new PHPMailer();
+        $mail->isSMTP();
+        $mail->Host = $_ENV["EMAIL_HOST"];
+        $mail->SMTPAuth = true;
+        $mail->Port = $_ENV["EMAIL_PORT"];
+        $mail->Username = $_ENV["EMAIL_USER"];
+        $mail->Password = $_ENV["EMAIL_PASS"];
+    }
+
+    public function enviarInformacionEnvio() {
+
+        // Crear el objeto de email
+        $mail = new PHPMailer();
+        $mail->isSMTP();
+        $mail->Host = $_ENV["EMAIL_HOST"];
+        $mail->SMTPAuth = true;
+        $mail->Port = $_ENV["EMAIL_PORT"];
+        $mail->Username = $_ENV["EMAIL_USER"];
+        $mail->Password = $_ENV["EMAIL_PASS"];
+    }
+
+    public function envioProcesando() {
+
+        // Crear el objeto de email
+        $mail = new PHPMailer();
+        $mail->isSMTP();
+        $mail->Host = $_ENV["EMAIL_HOST"];
+        $mail->SMTPAuth = true;
+        $mail->Port = $_ENV["EMAIL_PORT"];
+    }
+
+    public function envioCompletado() {
+
+        // Crear el objeto de email
+        $mail = new PHPMailer();
+        $mail->isSMTP();
+        $mail->Host = $_ENV["EMAIL_HOST"];
+        $mail->SMTPAuth = true;
+        $mail->Port = $_ENV["EMAIL_PORT"];
+    }
+
+    public function envioCancelado() {
+
+        // Crear el objeto de email
+        $mail = new PHPMailer();
+        $mail->isSMTP();
+        $mail->Host = $_ENV["EMAIL_HOST"];
+        $mail->SMTPAuth = true;
+        $mail->Port = $_ENV["EMAIL_PORT"];
     }
 } 

@@ -49,9 +49,9 @@
                     <th>ID Orden</th>
                     <th>Fecha</th>
                     <th>Total</th>
-                    <th>Estado</th>
                     <th>Productos</th>
-                    <th>Cantidad</th>
+                    <th>Cantidades</th>
+                    <th>Estado Envío</th>
                 </tr>
             </thead>
             <tbody>
@@ -60,20 +60,28 @@
                     <td><?php echo $orden->id; ?></td>
                     <td><?php echo $orden->fecha_orden; ?></td>
                     <td>$<?php echo $orden->total; ?></td>
-                    <td><?php echo $orden->estado; ?></td>
                     <td>
                         <ul>
                             <?php foreach ($orden->productos as $producto) : ?>
-                            <li><?php echo $producto->nombre; ?></li>
+                            <li style="text-align: left;"><?php echo $producto->nombre; ?></li>
                             <?php endforeach; ?>
                         </ul>
                     </td>
                     <td>
                         <ul>
                             <?php foreach ($orden->productos as $producto) : ?>
-                            <li><?php echo $producto->cantidad; ?></li>
+                            <li style="text-align: left;"> x<?php echo $producto->cantidad; ?></li>
                             <?php endforeach; ?>
                         </ul>
+                    </td>
+                    <td>
+                        Estado Actual: <span><?php echo $orden->estado; ?></span>
+                        <form method="POST" action="/orden/cambiar-estado">
+                            <input type="hidden" name="id_orden" value="<?php echo $orden->id; ?>">
+                            <button type="submit" name="estado" value="Procesado" class="boton-editar">Procesado</button>
+                            <button type="submit" name="estado" value="Completado" class="boton-aprobar">Completado</button>
+                            <button type="submit" name="estado" value="Cancelado" class="boton-eliminar" style="border-radius: 1rem">Cancelado</button>
+                        </form>
                     </td>
                 </tr>
                 <?php endforeach; ?>

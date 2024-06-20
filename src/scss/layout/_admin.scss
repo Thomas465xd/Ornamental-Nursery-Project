@@ -34,7 +34,8 @@
             border-radius: 1rem;
         }
 
-        table.productos {
+        table.productos, 
+        table.ordenes {
             margin-top: 4rem;
             width: 100%;
             border-collapse: collapse; /* Changed from border-spacing to border-collapse */

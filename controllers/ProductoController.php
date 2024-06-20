@@ -3,9 +3,13 @@
 namespace Controllers;
 
 use MVC\Router;
+
 use Model\Orden;
+
+use Classes\Email;
 use Model\Producto;
 use Model\DetallesOrden;
+
 use Intervention\Image\ImageManagerStatic as Image;
 
 class ProductoController {
@@ -16,9 +20,16 @@ class ProductoController {
             exit();
         }
 
-        $productos = Producto::all();
+        // Obtener todas las ordenes
         $ordenes = Orden::all();
-        $DetallesOrdenes = DetallesOrden::all();
+
+        // Obtener productos para cada orden
+        foreach ($ordenes as $orden) {
+            $orden->productos = DetallesOrden::obtenerProductosPorOrden($orden->id);
+        }
+
+        // Obtener todos los productos
+        $productos = Producto::all();
 
         // Arreglo con mensajes de errores
         $errores = Producto::getAlertas();
@@ -29,8 +40,9 @@ class ProductoController {
         $router->render("producto/admin", [
             "productos" => $productos, 
             "ordenes" => $ordenes,
-            "DetallesOrdenes" => $DetallesOrdenes,
-            "resultado" => $resultado
+            "errores" => $errores,
+            "resultado" => $resultado, 
+            'titulo' => 'Panel de Administración',
         ]);
     }
 
@@ -93,7 +105,8 @@ class ProductoController {
     
         $router->render("producto/crear", [
             "producto" => $producto,
-            "errores" => $errores
+            "errores" => $errores, 
+            'titulo' => 'Subir Producto',
         ]);
     }    
     
@@ -152,6 +165,7 @@ class ProductoController {
         $router->render("/producto/actualizar", [
             "producto" => $producto,
             "errores" => $errores,
+            'titulo' => 'Actualizar Producto',
         ]);
     }
 
@@ -186,5 +200,33 @@ class ProductoController {
                 echo "ID no válido.";
             }
         } 
+    }
+
+    // Ordenes 
+
+    public static function ordenes(Router $router) {
+
+        if (!isAdminLoggedIn()) {
+            header('Location: /login');
+            exit();
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id_orden = $_POST['id_orden'];
+            $nuevo_estado = $_POST['estado'];
+
+            // Buscar la orden y actualizar el estado
+            $orden = Orden::find($id_orden);
+            if ($orden) {
+                $orden->estado = $nuevo_estado;
+                $orden->guardar();
+
+                // Enviar email al cliente
+                self::enviarEmail($orden);
+
+                header('Location: /producto/admin');
+                exit();
+            }
+        }
     }
 }

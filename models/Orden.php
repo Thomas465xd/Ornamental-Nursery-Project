@@ -14,6 +14,8 @@ class Orden extends ActiveRecord {
     public $estado;
     public $metodo_pago;
 
+    public $productos = []; // Agregar esta propiedad
+
     public function __construct($args = []) {
         $this->id = $args['id'] ?? null;
         $this->id_usuario = $args['id_usuario'] ?? '';
@@ -42,5 +44,9 @@ class Orden extends ActiveRecord {
 
         return self::$alertas;
     }
+
+
+    public function obtenerProductos() {
+        $this->productos = DetallesOrden::where('id_orden', $this->id);
+    }
 }
-?>

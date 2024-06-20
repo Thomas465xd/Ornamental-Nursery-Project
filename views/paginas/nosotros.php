@@ -78,8 +78,8 @@
         </div>
     </section>
 
+    <h1 class="ubicacion"> ¿Donde <span>Encontrarnos?</span> 🕵️</h1>
     <section class="contenedor-seccion">
-        <h1> ¿Donde <span>Encontrarnos?</span> 🕵️</h1>
         
         <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d107379.306332119!2d-70.80200543778781!3d-32.749722309818495!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x968816835ff4b833%3A0xc26fa3627501a2a0!2sSan%20Felipe%2C%20Valpara%C3%ADso!5e0!3m2!1ses-419!2scl!4v1716686594844!5m2!1ses-419!2scl" 
@@ -91,6 +91,9 @@
             referrerpolicy="no-referrer-when-downgrade">
         </iframe>
 
-        <p>Direccion: Nos encontramos en la Quinta Región, en San Felipe</p>
+        <p style="margin-top: 2rem">Direccion: Antofagasta sin número 
+            Viña Errazuriz 
+            Panquehue
+        </p>
 
     </section>

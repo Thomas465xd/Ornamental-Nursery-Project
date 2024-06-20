@@ -98,7 +98,8 @@ class ComprasController {
             "carrito" => $carrito,
             "envio" => $envio,
             "regiones_permitidas" => $regiones_permitidas,
-            "alertas" => $alertas
+            "alertas" => $alertas, 
+            'titulo' => 'Confirmar Compra',
         ]); 
     }
 
